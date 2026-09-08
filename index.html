@@ -634,28 +634,28 @@ const ANTICOAG = [
   {
     id:"dabigatran", name:"Dabigatran", tag:"Inibitore diretto della trombina (anti-IIa), eliminazione prevalentemente renale",
     stop:"Dipende fortemente dalla clearance della creatinina e dal rischio emorragico:<br>CrCl &gt;80 ml/min: 1&ndash;2 gg (basso rischio) / 2&ndash;3 gg (alto rischio)<br>CrCl 50&ndash;80: 1&ndash;3 gg / 3&ndash;4 gg<br>CrCl 30&ndash;50: 3 gg / &gt;4 gg",
-    neuraxial:"Intervalli pi&ugrave; lunghi rispetto alla sola chirurgia, funzione-renale-dipendenti; verificare livello residuo se disponibile",
+    neuraxial:"Low dose: 48h prima del blocco. High dose: 72h (se CrCl &lt;50 ml/min la procedura pu&ograve; comunque essere eseguita se il dosaggio di laboratorio &egrave; nella norma). Fonte: ESAIC/ESRA 2022",
     resume:"24h dopo procedure a basso rischio, 48&ndash;72h dopo procedure ad alto rischio/neuroassiali",
     note:"Antidoto specifico disponibile: idarucizumab (vedi sezione Urgenza)."
   },
   {
     id:"apixaban", name:"Apixaban", tag:"Inibitore diretto del fattore Xa",
     stop:"Low dose (2,5 mg x2/die): 24&ndash;48h prima<br>High dose (5 mg x2/die, o 2,5 mg x2/die se &lt;60 kg o funzione renale molto ridotta): 48&ndash;72h prima",
-    neuraxial:"Low dose: almeno 36h prima del blocco (ASRA 2025). High dose: 72h (3 giorni)",
+    neuraxial:"Low dose: 36h prima del blocco. High dose: 72h (3 giorni; se CrCl &lt;30 ml/min la procedura pu&ograve; comunque essere eseguita se il dosaggio di laboratorio &egrave; nella norma). Fonte: ESAIC/ESRA 2022, concorde con ASRA 2025",
     resume:"24h dopo procedure a basso rischio; 48&ndash;72h dopo procedure ad alto rischio/neuroassiali con catetere",
     note:"Livello residuo accettabile per procedura neuroassiale: concentrazione plasmatica &lt;30 ng/mL o attivit&agrave; anti-Xa specifica &le;0,1 UI/mL, se disponibile in tempi utili."
   },
   {
     id:"rivaroxaban", name:"Rivaroxaban", tag:"Inibitore diretto del fattore Xa",
     stop:"Low dose: 24&ndash;48h prima<br>High dose (15&ndash;20 mg/die, in base alla funzione renale): 48&ndash;72h prima",
-    neuraxial:"High dose: 72h (3 giorni) prima del blocco neuroassiale/profondo (ASRA 2025)",
+    neuraxial:"Low dose: 24h prima del blocco (30h se CrCl &lt;30 ml/min). High dose: 72h (3 giorni). Fonte: ESAIC/ESRA 2022, concorde con ASRA 2025 per l'high dose",
     resume:"Come apixaban",
     note:"Nessun antidoto specifico approvato in Italia per uso perioperatorio routinario: in urgenza si utilizza andexanet alfa (dove disponibile) o PCC a 4 fattori off-label."
   },
   {
     id:"edoxaban", name:"Edoxaban", tag:"Inibitore diretto del fattore Xa",
     stop:"Low dose: 24&ndash;48h prima<br>High dose (30&ndash;60 mg/die, in base a peso/funzione renale): 48&ndash;72h prima",
-    neuraxial:"High dose: 72h (3 giorni) prima del blocco",
+    neuraxial:"Low dose: 24h prima del blocco (30h se CrCl &lt;30 ml/min). High dose: 72h (3 giorni). Fonte: ESAIC/ESRA 2022",
     resume:"Come apixaban/rivaroxaban",
     note:"Andexanet alfa non ha approvazione formale per edoxaban per carenza di dati dedicati: in urgenza il reversal si basa su PCC a 4 fattori off-label."
   },
@@ -702,9 +702,10 @@ const NEURAXIAL_TABLE = [
   ["Prasugrel","7&ndash;10 giorni","7&ndash;10 giorni","Come clopidogrel"],
   ["Ticagrelor","5&ndash;7 giorni","5&ndash;7 giorni","Come clopidogrel"],
   ["Warfarin","5 giorni, INR &lt;1,2","INR &lt;1,5 alla rimozione","Ripresa 24h dopo, sorveglianza neurologica prolungata"],
-  ["Dabigatran (funzione renale normale)","2&ndash;3 giorni (funzione renale-dipendente)","Stesso intervallo dall'ultima dose","48&ndash;72h dopo"],
-  ["Apixaban low dose","&ge;36 ore","&ge;36 ore","48&ndash;72h dopo"],
-  ["Apixaban/Rivaroxaban/Edoxaban high dose","72 ore (3 giorni)","72 ore","48&ndash;72h dopo"],
+  ["Rivaroxaban/Edoxaban low dose","24 ore (30h se CrCl&lt;30 ml/min)","24 ore (30h se CrCl&lt;30)","24h dopo, o dopo rimozione catetere"],
+  ["Apixaban low dose","36 ore","36 ore","24h dopo, o dopo rimozione catetere"],
+  ["Dabigatran low dose","48 ore","48 ore","24h dopo, o dopo rimozione catetere"],
+  ["DOAC (qualsiasi) high dose","72 ore (3 giorni)","72 ore","48&ndash;72h dopo, solo con emostasi adeguata"],
   ["EBPM profilattica","12 ore","12 ore","4h dopo (12h se puntura traumatica)"],
   ["EBPM terapeutica","24 ore","24 ore","24h dopo, solo con emostasi adeguata"],
   ["UFH EV terapeutica","4&ndash;6 ore, aPTT normale","4&ndash;6 ore","&ge;1h dopo"],
