@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antitrombotici in Perioperatorio</title>
+<style>
+:root{
+  --bg:#f6f5f1;
+  --panel:#ffffff;
+  --ink:#1c2321;
+  --ink-soft:#4d5652;
+  --line:#dedad0;
+  --anti:#0f5c5c;       /* anticoagulanti - teal */
+  --anti-bg:#e6f0ef;
+  --plate:#a3641c;      /* antiaggreganti - ochre */
+  --plate-bg:#f6ecdd;
+  --neur:#4a4e8f;       /* neuroassiale - indigo */
+  --neur-bg:#ecebf6;
+  --urg:#a5322c;         /* urgenza - brick red */
+  --urg-bg:#f7e7e5;
+  --ok:#2f6d3b;
+  --ok-bg:#e7f0e6;
+  --radius:10px;
+  --serif: "Source Serif 4", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: "SF Mono", "Menlo", monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;
+  line-height:1.5;
+  padding-bottom:60px;
+}
+a{color:inherit;}
+
+/* ---------- Header ---------- */
+header.top{
+  background:var(--panel);
+  border-bottom:1px solid var(--line);
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+.top-inner{
+  max-width:980px;
+  margin:0 auto;
+  padding:18px 20px 0 20px;
+}
+.eyebrow{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:0.02em;
+  color:var(--ink-soft);
+  margin:0 0 4px 0;
+}
+h1.title{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:clamp(22px,4.5vw,30px);
+  margin:0 0 4px 0;
+  letter-spacing:-0.01em;
+}
+p.subtitle{
+  margin:0 0 14px 0;
+  color:var(--ink-soft);
+  font-size:14.5px;
+  max-width:640px;
+}
+nav.tabs{
+  display:flex;
+  gap:2px;
+  overflow-x:auto;
+  scrollbar-width:none;
+  padding-bottom:0;
+}
+nav.tabs::-webkit-scrollbar{display:none;}
+nav.tabs button{
+  flex:0 0 auto;
+  background:none;
+  border:none;
+  border-bottom:3px solid transparent;
+  padding:10px 14px 12px 14px;
+  font-family:var(--sans);
+  font-size:14px;
+  font-weight:600;
+  color:var(--ink-soft);
+  cursor:pointer;
+  white-space:nowrap;
+}
+nav.tabs button.active{
+  color:var(--ink);
+  border-bottom-color:var(--ink);
+}
+nav.tabs button:hover{color:var(--ink);}
+
+/* ---------- Layout ---------- */
+main{
+  max-width:980px;
+  margin:0 auto;
+  padding:24px 20px 0 20px;
+}
+section.view{display:none;}
+section.view.active{display:block;}
+
+.section-head{
+  margin-bottom:18px;
+}
+.section-head h2{
+  font-family:var(--serif);
+  font-size:22px;
+  font-weight:600;
+  margin:0 0 6px 0;
+}
+.section-head p{
+  margin:0;
+  color:var(--ink-soft);
+  font-size:14.5px;
+  max-width:680px;
+}
+
+/* ---------- Cards ---------- */
+.card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:16px 18px;
+  margin-bottom:14px;
+}
+.drug-card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-left:4px solid var(--ink-soft);
+  border-radius:var(--radius);
+  margin-bottom:12px;
+  overflow:hidden;
+}
+.drug-card.anti{border-left-color:var(--anti);}
+.drug-card.plate{border-left-color:var(--plate);}
+.drug-card.neur{border-left-color:var(--neur);}
+.drug-card.urg{border-left-color:var(--urg);}
+
+.drug-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:14px 16px;
+  cursor:pointer;
+  user-select:none;
+}
+.drug-name{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:17px;
+}
+.drug-tag{
+  font-size:11.5px;
+  color:var(--ink-soft);
+  font-family:var(--mono);
+}
+.chev{
+  font-size:13px;
+  color:var(--ink-soft);
+  transition:transform .15s ease;
+  flex:0 0 auto;
+}
+.drug-card.open .chev{transform:rotate(90deg);}
+.drug-body{
+  display:none;
+  padding:0 16px 16px 16px;
+  border-top:1px solid var(--line);
+}
+.drug-card.open .drug-body{display:block;padding-top:14px;}
+
+.grid2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-bottom:12px;
+}
+@media (max-width:560px){.grid2{grid-template-columns:1fr;}}
+
+.stat{
+  background:var(--bg);
+  border-radius:8px;
+  padding:10px 12px;
+}
+.stat .k{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  color:var(--ink-soft);
+  font-family:var(--mono);
+  margin-bottom:3px;
+}
+.stat .v{
+  font-size:15px;
+  font-weight:600;
+}
+.note{
+  font-size:13.5px;
+  color:var(--ink-soft);
+  margin-top:8px;
+  line-height:1.55;
+}
+.note strong{color:var(--ink);}
+
+.pill{
+  display:inline-block;
+  font-size:11px;
+  font-family:var(--mono);
+  padding:2px 8px;
+  border-radius:20px;
+  background:var(--anti-bg);
+  color:var(--anti);
+  margin-right:6px;
+  margin-bottom:4px;
+}
+.pill.plate{background:var(--plate-bg);color:var(--plate);}
+.pill.urg{background:var(--urg-bg);color:var(--urg);}
+.pill.ok{background:var(--ok-bg);color:var(--ok);}
+
+/* ---------- Tables ---------- */
+.tbl-wrap{overflow-x:auto;margin-bottom:16px;border:1px solid var(--line);border-radius:var(--radius);}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:13.5px;}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line);}
+th{
+  background:var(--bg);
+  font-family:var(--mono);
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.03em;
+  color:var(--ink-soft);
+  font-weight:600;
+}
+tr:last-child td{border-bottom:none;}
+td.hi{font-weight:600;}
+
+/* ---------- Callouts ---------- */
+.callout{
+  border-radius:var(--radius);
+  padding:14px 16px;
+  margin-bottom:16px;
+  font-size:14px;
+  line-height:1.55;
+}
+.callout.urgent{background:var(--urg-bg);border:1px solid #e2b6b2;}
+.callout.urgent .lbl{color:var(--urg);}
+.callout.info{background:var(--neur-bg);border:1px solid #c9c9e6;}
+.callout.info .lbl{color:var(--neur);}
+.callout.ok{background:var(--ok-bg);border:1px solid #bcd8bb;}
+.callout.ok .lbl{color:var(--ok);}
+.callout .lbl{
+  display:block;
+  font-family:var(--mono);
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  margin-bottom:5px;
+  font-weight:700;
+}
+
+/* ---------- Tool (decision helper) ---------- */
+.tool{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:18px;
+  margin-bottom:20px;
+}
+.tool h3{
+  font-family:var(--serif);
+  font-size:17px;
+  margin:0 0 12px 0;
+}
+.field{margin-bottom:12px;}
+.field label{
+  display:block;
+  font-size:12px;
+  font-family:var(--mono);
+  color:var(--ink-soft);
+  margin-bottom:5px;
+  text-transform:uppercase;
+  letter-spacing:.03em;
+}
+select{
+  width:100%;
+  padding:10px 12px;
+  border-radius:8px;
+  border:1px solid var(--line);
+  background:var(--bg);
+  font-size:14.5px;
+  color:var(--ink);
+  font-family:var(--sans);
+  appearance:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%234d5652' stroke-width='2'><path d='M6 9l6 6 6-6'/></svg>");
+  background-repeat:no-repeat;
+  background-position:right 12px center;
+}
+.result{
+  margin-top:14px;
+}
+
+/* ---------- Search ---------- */
+.searchbar{
+  width:100%;
+  padding:11px 14px;
+  border-radius:8px;
+  border:1px solid var(--line);
+  background:var(--panel);
+  font-size:14.5px;
+  margin-bottom:16px;
+}
+.searchbar:focus{outline:2px solid var(--neur);outline-offset:-1px;}
+
+.hidden{display:none !important;}
+
+footer{
+  max-width:980px;
+  margin:36px auto 0 auto;
+  padding:18px 20px 0 20px;
+  border-top:1px solid var(--line);
+  color:var(--ink-soft);
+  font-size:12.5px;
+}
+footer .refs{margin-top:8px;}
+footer .refs div{margin-bottom:4px;}
+
+.badge-row{margin-bottom:14px;}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <p class="eyebrow">Riferimento clinico &mdash; Anestesia &amp; Terapia Intensiva</p>
+    <h1 class="title">Antitrombotici in Perioperatorio</h1>
+    <p class="subtitle">Sospensione e ripresa di anticoagulanti e antiaggreganti in elezione e urgenza, con focus su anestesia loco-regionale e neuroassiale.</p>
+    <nav class="tabs" id="tabs">
+      <button data-view="home" class="active">Panoramica</button>
+      <button data-view="plate">Antiaggreganti</button>
+      <button data-view="anti">Anticoagulanti</button>
+      <button data-view="neur">Blocchi neuroassiali</button>
+      <button data-view="urg">Urgenza &amp; reversal</button>
+      <button data-view="tool">Strumento rapido</button>
+      <button data-view="refs">Bibliografia</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HOME ============ -->
+<section class="view active" id="view-home">
+  <div class="section-head">
+    <h2>Come usare questa app</h2>
+    <p>Contenuti aggiornati alle linee guida ASRA 5&ordf; edizione (2025), ESAIC/ESRA (linee guida congiunte 2022, aggiornamento anestesia loco-regionale in pazienti in terapia antitrombotica), ESAIC valutazione preoperatoria (2025) e consensus multisocietario SEC/SEDAR e affini (2025) sulla gestione perioperatoria e periprocedurale della terapia antitrombotica.</p>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="drug-name" style="margin-bottom:6px;">Principio guida</div>
+      <p class="note" style="margin-top:0;">La decisione non dipende solo dal farmaco, ma dall'incrocio tra <strong>rischio emorragico della procedura</strong>, <strong>rischio trombotico del paziente</strong> e, per i blocchi centrali, <strong>rischio di ematoma spinale/epidurale</strong>. Nessuna di queste tre dimensioni va valutata isolatamente.</p>
+    </div>
+    <div class="card">
+      <div class="drug-name" style="margin-bottom:6px;">Terminologia 2025</div>
+      <p class="note" style="margin-top:0;">ASRA 2025 abbandona i termini "profilattico/terapeutico" a favore di <strong>"low dose / high dose"</strong> per gli anticoagulanti, allineandosi a ESAIC/ESRA. Questa app usa la stessa classificazione.</p>
+    </div>
+  </div>
+
+  <div class="callout urgent">
+    <span class="lbl">Attenzione</span>
+    Strumento di consultazione rapida per uso professionale: non sostituisce il giudizio clinico, il confronto multidisciplinare (cardiologia, ematologia, chirurgia) n&eacute; i protocolli locali. In caso di sanguinamento maggiore o emergenza vitale, seguire i percorsi aziendali e non attendere la stratificazione completa del rischio.
+  </div>
+
+  <div class="section-head">
+    <h2>Le tre domande da porsi sempre</h2>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Domanda</th><th>Determina</th></tr></thead>
+      <tbody>
+        <tr><td class="hi">La procedura pu&ograve; attendere?</td><td>Elezione &rarr; sospensione pianificata secondo farmacocinetica. Urgenza &rarr; reversal o gestione del rischio residuo.</td></tr>
+        <tr><td class="hi">Qual &egrave; il rischio emorragico della chirurgia/procedura?</td><td>Basso rischio &rarr; spesso si pu&ograve; continuare l'antiaggregante singolo o ridurre l'intervallo di sospensione. Alto rischio &rarr; intervalli pi&ugrave; lunghi, valori residui pi&ugrave; bassi richiesti.</td></tr>
+        <tr><td class="hi">&Egrave; previsto un blocco neuroassiale o profondo?</td><td>Gli intervalli ASRA/ESRA per anestesia centrale sono spesso pi&ugrave; conservativi di quelli richiesti per la sola chirurgia, per il rischio di ematoma spinale.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ ANTIAGGREGANTI ============ -->
+<section class="view" id="view-plate">
+  <div class="section-head">
+    <h2>Farmaci antiaggreganti</h2>
+    <p>Tempistiche di sospensione elettiva (chirurgia generale) e intervalli specifici per blocco neuroassiale/profondo secondo ASRA 5&ordf; ed. (2025). Per lo stent coronarico, la durata minima di DAPT viene sempre valutata insieme alla cardiologia interventistica.</p>
+  </div>
+
+  <input class="searchbar" id="search-plate" placeholder="Cerca un farmaco (es. clopidogrel, ticagrelor)...">
+
+  <div id="plate-list"></div>
+
+  <div class="callout info">
+    <span class="lbl">Stent coronarico e DAPT</span>
+    ESAIC 2025 raccomanda di mantenere la doppia terapia antiaggregante per 6 mesi dopo PCI elettiva e 12 mesi dopo PCI per sindrome coronarica acuta, differendo la chirurgia non urgente oltre questa finestra quando possibile. Se l'intervento non &egrave; procrastinabile, l'aspirina viene generalmente proseguita e si sospende solo l'inibitore P2Y12, previa discussione con il cardiologo. Nei pazienti a rischissimo trombotico (stent recente, trombosi di stent pregressa) va considerato un bridging con <strong>cangrelor</strong> (inibitore P2Y12 endovenoso a emivita ultra-breve, 3&ndash;6 minuti), interrotto 1&ndash;6 ore prima della chirurgia.
+  </div>
+</section>
+
+<!-- ============ ANTICOAGULANTI ============ -->
+<section class="view" id="view-anti">
+  <div class="section-head">
+    <h2>Farmaci anticoagulanti</h2>
+    <p>Warfarin, DOAC ed eparine. Le finestre di sospensione dei DOAC dipendono da farmaco, dose (low/high), funzione renale e rischio emorragico della procedura.</p>
+  </div>
+
+  <input class="searchbar" id="search-anti" placeholder="Cerca un farmaco (es. apixaban, warfarin, fondaparinux)...">
+
+  <div id="anti-list"></div>
+
+  <div class="section-head" style="margin-top:22px;">
+    <h2>Bridging con eparina: quando (non) farlo</h2>
+  </div>
+  <div class="callout ok">
+    <span class="lbl">Non bridging di routine</span>
+    Il bridging perioperatorio con EBPM in pazienti in terapia con warfarin non riduce il tromboembolismo e aumenta significativamente il sanguinamento maggiore nei pazienti a rischio trombotico basso&ndash;moderato (evidenza da trial randomizzati tipo BRIDGE). Va quindi riservato ai pazienti ad <strong>alto rischio trombotico</strong>.
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Categoria di rischio trombotico alto (bridging da considerare)</th></tr></thead>
+      <tbody>
+        <tr><td>Protesi valvolare cardiaca meccanica (specie mitralica, o aortica "vecchia generazione", o storia di ictus/TIA)</td></tr>
+        <tr><td>Fibrillazione atriale con CHA&#8322;DS&#8322;-VASc elevato (&ge;7) o pregresso ictus/TIA recente (&lt;3 mesi)</td></tr>
+        <tr><td>Tromboembolismo venoso recente (&lt;3 mesi), specie se in corso di completamento della fase acuta</td></tr>
+        <tr><td>Trombofilia grave (es. deficit di proteina C/S, sindrome da anticorpi antifosfolipidi)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ NEURAXIAL ============ -->
+<section class="view" id="view-neur">
+  <div class="section-head">
+    <h2>Anestesia loco-regionale e neuroassiale</h2>
+    <p>Intervalli tra ultima dose del farmaco e blocco/posizionamento o rimozione di catetere, secondo ASRA 5&ordf; edizione (2025) e linee guida congiunte ESAIC/ESRA. Valgono anche per i blocchi profondi del plesso/nervi periferici (es. plesso lombare, sciatico prossimale), non solo per spinale/epidurale.</p>
+  </div>
+
+  <div class="callout info">
+    <span class="lbl">Principio ASRA 2025</span>
+    Il rischio di ematoma spinale &egrave; l'evento guida di tutte le raccomandazioni su blocco centrale/profondo. Le finestre qui indicate sono generalmente <strong>pi&ugrave; lunghe</strong> di quelle richieste per la sola chirurgia generale nello stesso paziente. Per i DOAC ad alto dosaggio, ASRA 2025 introduce la possibilit&agrave; di verificare un <strong>livello residuo accettabile</strong> (concentrazione plasmatica &lt;30 ng/mL o attivit&agrave; anti-Xa &le;0,1 UI/mL) come alternativa/complemento all'attesa basata solo sul tempo, quando il dosaggio &egrave; disponibile in tempi utili.
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>Farmaco</th><th>Prima del blocco/inserimento catetere</th><th>Rimozione catetere</th><th>Ripresa dopo blocco/rimozione</th></tr>
+      </thead>
+      <tbody id="neur-table-body"></tbody>
+    </table>
+  </div>
+
+  <div class="section-head" style="margin-top:22px;">
+    <h2>Farmaci senza controindicazione specifica</h2>
+  </div>
+  <div class="callout ok">
+    <span class="lbl">Nessuna precauzione aggiuntiva richiesta</span>
+    <strong>Aspirina/FANS</strong> in monoterapia non richiedono sospensione n&eacute; intervallo di attesa per l'esecuzione di blocchi neuroassiali o periferici (ASRA). Le <strong>eparine sottocutanee a basse dosi per tromboprofilassi standard (UFH 5000 UI x2&ndash;3/die)</strong> non controindicano il blocco, ma si raccomanda comunque un intervallo prudenziale di alcune ore dall'ultima somministrazione e attenzione alla concomitanza con altri farmaci emostaticamente attivi. I fitoterapici comuni (aglio, ginkgo, ginseng) non aumentano di per s&eacute; il rischio in modo clinicamente rilevante.
+  </div>
+
+  <div class="section-head" style="margin-top:10px;">
+    <h2>Sorveglianza dopo blocco centrale</h2>
+  </div>
+  <div class="card">
+    <p class="note" style="margin-top:0;">In pazienti in terapia anticoagulante con catetere neuroassiale in sede, &egrave; raccomandata una valutazione neurologica (funzione motoria e sensitiva) programmata e ripetuta, con soluzioni analgesiche a bassa concentrazione per non mascherare un deficit incipiente. La sorveglianza va proseguita per almeno 24 ore dopo l'ultima dose di anticoagulante e per almeno 24 ore dopo la rimozione del catetere; qualunque nuovo deficit motorio, dolore dorsale intenso o disfunzione sfinterica impone RM urgente e valutazione neurochirurgica immediata.</p>
+  </div>
+</section>
+
+<!-- ============ URGENZA ============ -->
+<section class="view" id="view-urg">
+  <div class="section-head">
+    <h2>Chirurgia urgente e reversal</h2>
+    <p>Nel paziente che necessita di intervento non differibile, l'obiettivo non &egrave; sempre la normalizzazione completa dell'emostasi, ma il bilancio pi&ugrave; favorevole possibile tra rischio emorragico immediato e rischio trombotico della reversione.</p>
+  </div>
+
+  <div class="callout urgent">
+    <span class="lbl">Prima domanda in urgenza</span>
+    L'intervento &egrave; davvero non differibile di poche ore? Un ritardo di 6&ndash;12 ore ottenuto con misure di supporto (o l'attesa della clearance spontanea del farmaco) evita spesso l'uso di antidoti costosi e non privi di rischio trombotico proprio.
+  </div>
+
+  <div class="tool" id="urg-selector">
+    <h3>Quale farmaco utilizzare in urgenza?</h3>
+    <div class="field">
+      <label for="urg-drug-select">Il paziente &egrave; in terapia con</label>
+      <select id="urg-drug-select"></select>
+    </div>
+    <div class="result" id="urg-selector-result"></div>
+  </div>
+
+  <div id="urg-list"></div>
+
+  <div class="section-head" style="margin-top:22px;">
+    <h2>Antiaggreganti in urgenza</h2>
+  </div>
+  <div class="card">
+    <p class="note" style="margin-top:0;"><strong>Non esiste un antidoto farmacologico specifico per gli antiaggreganti.</strong> In presenza di sanguinamento maggiore o chirurgia emergente ad alto rischio emorragico in paziente su DAPT: la trasfusione di piastrine pu&ograve; essere considerata, ma ha efficacia limitata se il paziente ha assunto ticagrelor nelle ultime ore (il metabolita attivo circolante inibisce anche le piastrine trasfuse). La desmopressina (DDAVP, 0,3 mcg/kg IV) pu&ograve; migliorare la funzione piastrinica in alcuni contesti (uremia, aspirina). L'acido tranexamico &egrave; una misura aggiuntiva ragionevole in assenza di controindicazioni.</p>
+  </div>
+</section>
+
+<!-- ============ TOOL ============ -->
+<section class="view" id="view-tool">
+  <div class="section-head">
+    <h2>Strumento di orientamento rapido</h2>
+    <p>Seleziona farmaco, contesto e presenza di blocco neuroassiale per un orientamento sintetico. Non sostituisce la consultazione delle schede complete.</p>
+  </div>
+
+  <div class="tool">
+    <h3>Configura il caso</h3>
+    <div class="field">
+      <label for="tool-drug">Farmaco</label>
+      <select id="tool-drug"></select>
+    </div>
+    <div class="field">
+      <label for="tool-context">Contesto</label>
+      <select id="tool-context">
+        <option value="elective-low">Chirurgia elettiva &mdash; basso rischio emorragico</option>
+        <option value="elective-high">Chirurgia elettiva &mdash; alto rischio emorragico</option>
+        <option value="neuraxial">Blocco neuroassiale/profondo programmato</option>
+        <option value="urgent">Chirurgia urgente/non differibile</option>
+      </select>
+    </div>
+    <div class="result" id="tool-result"></div>
+  </div>
+</section>
+
+<!-- ============ REFS ============ -->
+<section class="view" id="view-refs">
+  <div class="section-head">
+    <h2>Bibliografia essenziale</h2>
+    <p>Fonti principali utilizzate per questa app, in ordine cronologico decrescente.</p>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <tbody>
+        <tr><td>Kopp SL, Vandermeulen E, McBane RD, Perlas A, Leffert L, Horlocker T. <strong>Regional anesthesia in the patient receiving antithrombotic or thrombolytic therapy: ASRA Evidence-Based Guidelines (5th edition).</strong> Reg Anesth Pain Med. 2025.</td></tr>
+        <tr><td><strong>Perioperative and periprocedural management of antithrombotic therapy</strong> &mdash; 2025 multisociety consensus document (SEC, SEDAR, SEACV, and affiliated Spanish societies). Rev Esp Cardiol. 2025.</td></tr>
+        <tr><td>Lamperti M, Romero CS, Guarracino F, et al. <strong>Preoperative assessment of adults undergoing elective noncardiac surgery: updated ESAIC guidelines.</strong> Eur J Anaesthesiol. 2025;42(1):1-35.</td></tr>
+        <tr><td><strong>Direct oral anticoagulant management for neuraxial anaesthesia and deep peripheral nerve blocks</strong> &mdash; comparison ASRA vs PAUSE protocol. Br J Anaesth. 2025.</td></tr>
+        <tr><td>Kietaibl S, Ferrandis R, Godier A, et al. <strong>Regional anaesthesia in patients on antithrombotic drugs: Joint ESAIC/ESRA guidelines.</strong> Eur J Anaesthesiol. 2022;39(2):100-132 (tuttora riferimento per l'anestesia loco-regionale periferica, integrato dai chiarimenti 2023 e dagli aggiornamenti ASRA 2025).</td></tr>
+        <tr><td>Moore HB, Barrett CD. <strong>Reversal of direct oral anticoagulants: guidance from the SSC of the ISTH.</strong> J Thromb Haemost. 2025;23(3).</td></tr>
+        <tr><td>HaemSTAR collaborative. <strong>UK-wide analysis of the use of reversal agents in patients on DOACs prior to urgent procedures.</strong> 2026.</td></tr>
+        <tr><td>Narouze S, Benzon HT, Provenzano D, et al. <strong>Interventional spine and pain procedures in patients on antiplatelet and anticoagulant medications (2nd edition).</strong> Reg Anesth Pain Med. 2018 (riferimento storico per le procedure interventistiche del dolore).</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout info">
+    <span class="lbl">Nota metodologica</span>
+    I contenuti sintetizzano raccomandazioni di linee guida multiple, talvolta non concordanti nei dettagli (es. ASRA vs protocollo PAUSE per i DOAC in anestesia neuroassiale). In caso di discrepanza rilevante, la scheda del farmaco lo segnala esplicitamente: la scelta finale resta clinica e locale.
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div>App di riferimento clinico &mdash; uso professionale. Verificare sempre dose, funzione renale/epatica e protocolli locali prima di applicare le indicazioni.</div>
+</footer>
+
+<script>
+/* ================= DATA ================= */
+
+const PLATELETS = [
+  {
+    id:"asa", name:"Aspirina (ASA)", tag:"COX-1 inibitore irreversibile",
+    stop:"Non richiede sospensione nella maggior parte degli interventi",
+    stopHigh:"Sospendere 5&ndash;7 giorni prima solo per chirurgia a rischissimo emorragico (es. neurochirurgia intracranica, camera posteriore oculare) o su specifica richiesta del chirurgo",
+    neuraxial:"Nessuna precauzione aggiuntiva richiesta (ASRA)",
+    resume:"Ripresa immediata/entro 24h se sospesa",
+    note:"In prevenzione secondaria cardiovascolare la sospensione va sempre discussa con cardiologia: il beneficio del mantenimento supera quasi sempre il rischio emorragico incrementale."
+  },
+  {
+    id:"clopidogrel", name:"Clopidogrel", tag:"Tienopiridina, inibitore P2Y12 irreversibile",
+    stop:"Sospendere 5 giorni prima (chirurgia generale)",
+    neuraxial:"5&ndash;7 giorni prima di blocco neuroassiale/profondo (ASRA)",
+    resume:"Dose di carico possibile 24h dopo il blocco/rimozione catetere; senza carico, limitare il catetere a 1&ndash;2 giorni",
+    note:"Verificare sempre la durata minima di DAPT residua se posizionato stent coronarico recente prima di sospendere."
+  },
+  {
+    id:"prasugrel", name:"Prasugrel", tag:"Tienopiridina di 3&ordf; generazione, pi&ugrave; potente e a esordio pi&ugrave; rapido di clopidogrel",
+    stop:"Sospendere 7&ndash;10 giorni prima (chirurgia generale)",
+    neuraxial:"7&ndash;10 giorni prima di blocco neuroassiale/profondo",
+    resume:"Come clopidogrel: dose da carico 24h dopo, altrimenti catetere limitato a 1&ndash;2 giorni",
+    note:"Intervallo pi&ugrave; lungo di clopidogrel/ticagrelor per la maggiore potenza e irreversibilit&agrave; del legame."
+  },
+  {
+    id:"ticagrelor", name:"Ticagrelor", tag:"Ciclopentiltriazolopirimidina, inibitore P2Y12 reversibile",
+    stop:"Sospendere 3&ndash;5 giorni prima (chirurgia generale)",
+    neuraxial:"5&ndash;7 giorni prima di blocco neuroassiale/profondo (ASRA, prudenziale nonostante la reversibilit&agrave; del legame)",
+    resume:"Come clopidogrel/prasugrel",
+    note:"Il legame reversibile accorcia il recupero funzionale piastrinico rispetto ai tienopiridinici, ma ASRA mantiene un intervallo neuroassiale conservativo per la variabilit&agrave; individuale."
+  },
+  {
+    id:"cangrelor", name:"Cangrelor", tag:"Inibitore P2Y12 EV, emivita 3&ndash;6 minuti &mdash; farmaco di bridging",
+    stop:"Interrompere l'infusione 1&ndash;6 ore prima della chirurgia",
+    neuraxial:"Dati limitati: intervallo prudenziale analogo, da discutere caso per caso con ematologia/cardiologia",
+    resume:"Pu&ograve; essere ripreso rapidamente nel postoperatorio se indicato",
+    note:"Utilizzato per garantire copertura antipiastrinica continua nei pazienti a rischissimo trombotico (stent recentissimo) che devono sospendere il P2Y12 orale prima di un intervento non differibile."
+  },
+  {
+    id:"gp2b3a", name:"Inibitori GPIIb/IIIa (abciximab, eptifibatide, tirofiban)", tag:"Bloccano il recettore fibrinogeno/vWF sulla piastrina",
+    stop:"Abciximab: 24&ndash;48h prima. Eptifibatide/tirofiban: 4&ndash;8h prima",
+    neuraxial:"Stessi intervalli: abciximab 24&ndash;48h, eptifibatide/tirofiban 4&ndash;8h prima del blocco",
+    resume:"Basata sul tempo di recupero della normale aggregazione piastrinica, non su schema fisso",
+    note:"Uso quasi esclusivamente in ambito coronarico interventistico acuto."
+  },
+  {
+    id:"dipiridamolo", name:"Dipiridamolo", tag:"Inibitore fosfodiesterasi/adenosina, azione antiaggregante debole",
+    stop:"Dati specifici limitati; generalmente nessuna sospensione o 24h",
+    neuraxial:"Nessuna precauzione aggiuntiva significativa riportata",
+    resume:"Ripresa standard postoperatoria",
+    note:"Spesso in associazione fissa con aspirina (es. prevenzione secondaria ictus): valutare il farmaco predominante nella decisione."
+  }
+];
+
+const ANTICOAG = [
+  {
+    id:"warfarin", name:"Warfarin (AVK)", tag:"Antagonista della vitamina K",
+    stop:"Sospendere 5 giorni prima; controllare INR il giorno prima dell'intervento",
+    target:"INR &lt;1,5 per chirurgia standard; INR &lt;1,2 per neuroassiale o chirurgia ad alto rischio emorragico",
+    resume:"Ripresa entro 12&ndash;24h post-operatorie se emostasi adeguata (effetto pieno ritardato di alcuni giorni: coprire con EBPM se rischio trombotico elevato)",
+    note:"Bridging con EBPM riservato ai pazienti ad alto rischio trombotico (vedi sezione dedicata): non di routine."
+  },
+  {
+    id:"dabigatran", name:"Dabigatran", tag:"Inibitore diretto della trombina (anti-IIa), eliminazione prevalentemente renale",
+    stop:"Dipende fortemente dalla clearance della creatinina e dal rischio emorragico:<br>CrCl &gt;80 ml/min: 1&ndash;2 gg (basso rischio) / 2&ndash;3 gg (alto rischio)<br>CrCl 50&ndash;80: 1&ndash;3 gg / 3&ndash;4 gg<br>CrCl 30&ndash;50: 3 gg / &gt;4 gg",
+    neuraxial:"Intervalli pi&ugrave; lunghi rispetto alla sola chirurgia, funzione-renale-dipendenti; verificare livello residuo se disponibile",
+    resume:"24h dopo procedure a basso rischio, 48&ndash;72h dopo procedure ad alto rischio/neuroassiali",
+    note:"Antidoto specifico disponibile: idarucizumab (vedi sezione Urgenza)."
+  },
+  {
+    id:"apixaban", name:"Apixaban", tag:"Inibitore diretto del fattore Xa",
+    stop:"Low dose (2,5 mg x2/die): 24&ndash;48h prima<br>High dose (5 mg x2/die, o 2,5 mg x2/die se &lt;60 kg o funzione renale molto ridotta): 48&ndash;72h prima",
+    neuraxial:"Low dose: almeno 36h prima del blocco (ASRA 2025). High dose: 72h (3 giorni)",
+    resume:"24h dopo procedure a basso rischio; 48&ndash;72h dopo procedure ad alto rischio/neuroassiali con catetere",
+    note:"Livello residuo accettabile per procedura neuroassiale: concentrazione plasmatica &lt;30 ng/mL o attivit&agrave; anti-Xa specifica &le;0,1 UI/mL, se disponibile in tempi utili."
+  },
+  {
+    id:"rivaroxaban", name:"Rivaroxaban", tag:"Inibitore diretto del fattore Xa",
+    stop:"Low dose: 24&ndash;48h prima<br>High dose (15&ndash;20 mg/die, in base alla funzione renale): 48&ndash;72h prima",
+    neuraxial:"High dose: 72h (3 giorni) prima del blocco neuroassiale/profondo (ASRA 2025)",
+    resume:"Come apixaban",
+    note:"Nessun antidoto specifico approvato in Italia per uso perioperatorio routinario: in urgenza si utilizza andexanet alfa (dove disponibile) o PCC a 4 fattori off-label."
+  },
+  {
+    id:"edoxaban", name:"Edoxaban", tag:"Inibitore diretto del fattore Xa",
+    stop:"Low dose: 24&ndash;48h prima<br>High dose (30&ndash;60 mg/die, in base a peso/funzione renale): 48&ndash;72h prima",
+    neuraxial:"High dose: 72h (3 giorni) prima del blocco",
+    resume:"Come apixaban/rivaroxaban",
+    note:"Andexanet alfa non ha approvazione formale per edoxaban per carenza di dati dedicati: in urgenza il reversal si basa su PCC a 4 fattori off-label."
+  },
+  {
+    id:"ufh-iv", name:"Eparina non frazionata (EV, terapeutica)", tag:"Anticoagulante indiretto (antitrombina-mediato)",
+    stop:"Sospendere l'infusione almeno 4&ndash;6 ore prima; verificare aPTT/ACT normalizzati",
+    neuraxial:"Stessa finestra (4&ndash;6h); ritardare la successiva somministrazione EV di almeno 1h dopo il posizionamento dell'ago",
+    resume:"Ripresa in base al sanguinamento chirurgico, tipicamente non prima di 1h dal blocco",
+    note:"In terapia &gt;4 giorni, controllare piastrinemia per rischio di piastrinopenia eparino-indotta prima del blocco."
+  },
+  {
+    id:"ufh-sc", name:"Eparina non frazionata (SC, basse dosi/tromboprofilassi)", tag:"Profilassi standard 5000 UI x2&ndash;3/die",
+    stop:"Nessuna controindicazione specifica alla chirurgia standard",
+    neuraxial:"Nessuna precauzione aggiuntiva importante, ma intervallo prudenziale di alcune ore dall'ultima dose",
+    resume:"Ripresa standard postoperatoria secondo timing di tromboprofilassi",
+    note:"Da non confondere con la formulazione EV terapeutica ad alte dosi."
+  },
+  {
+    id:"lmwh-prophylactic", name:"EBPM &mdash; dose profilattica", tag:"Es. enoxaparina 4000 UI (40 mg)/die",
+    stop:"Sospendere almeno 12h prima",
+    neuraxial:"12h prima del blocco neuroassiale/profondo; 12h anche prima della rimozione catetere",
+    resume:"Ripresa 4h dopo il blocco/rimozione catetere in assenza di sanguinamento; non prima di 12h se puntura traumatica",
+    note:"Verificare sempre la funzione renale: nell'insufficienza renale severa l'accumulo prolunga l'effetto."
+  },
+  {
+    id:"lmwh-therapeutic", name:"EBPM &mdash; dose terapeutica", tag:"Es. enoxaparina 1 mg/kg x2/die o 1,5 mg/kg/die",
+    stop:"Sospendere almeno 24h prima",
+    neuraxial:"24h prima del blocco neuroassiale/profondo e prima della rimozione del catetere",
+    resume:"Ripresa non prima di 24h dal blocco/rimozione catetere, e solo con emostasi chirurgica adeguata",
+    note:"In urgenza, la reversibilit&agrave; parziale con protamina va considerata (vedi sezione Urgenza)."
+  },
+  {
+    id:"fondaparinux", name:"Fondaparinux", tag:"Inibitore selettivo del fattore Xa, emivita lunga (17&ndash;21h)",
+    stop:"Dose profilattica: 36&ndash;42h prima. Dose terapeutica: evitare, se possibile, il blocco neuroassiale del tutto",
+    neuraxial:"Da evitare in presenza di catetere neuroassiale per il rischio di accumulo ed emivita lunga; se indispensabile, intervallo &ge;4 giorni e solo con expertise dedicata",
+    resume:"Ripresa non prima di 6&ndash;12h dal blocco (dose profilattica), con cautela estrema",
+    note:"Nessun antidoto specifico disponibile: la gestione dell'urgenza si basa su supporto emostatico generale."
+  }
+];
+
+const NEURAXIAL_TABLE = [
+  ["Aspirina/FANS","Nessuna attesa richiesta","Nessuna attesa richiesta","Nessuna restrizione"],
+  ["Clopidogrel","5&ndash;7 giorni","5&ndash;7 giorni dall'ultima dose","Carico 24h dopo, o limitare catetere a 1&ndash;2 gg"],
+  ["Prasugrel","7&ndash;10 giorni","7&ndash;10 giorni","Come clopidogrel"],
+  ["Ticagrelor","5&ndash;7 giorni","5&ndash;7 giorni","Come clopidogrel"],
+  ["Warfarin","5 giorni, INR &lt;1,2","INR &lt;1,5 alla rimozione","Ripresa 24h dopo, sorveglianza neurologica prolungata"],
+  ["Dabigatran (funzione renale normale)","2&ndash;3 giorni (funzione renale-dipendente)","Stesso intervallo dall'ultima dose","48&ndash;72h dopo"],
+  ["Apixaban low dose","&ge;36 ore","&ge;36 ore","48&ndash;72h dopo"],
+  ["Apixaban/Rivaroxaban/Edoxaban high dose","72 ore (3 giorni)","72 ore","48&ndash;72h dopo"],
+  ["EBPM profilattica","12 ore","12 ore","4h dopo (12h se puntura traumatica)"],
+  ["EBPM terapeutica","24 ore","24 ore","24h dopo, solo con emostasi adeguata"],
+  ["UFH EV terapeutica","4&ndash;6 ore, aPTT normale","4&ndash;6 ore","&ge;1h dopo"],
+  ["Fondaparinux","Evitare se possibile / 36&ndash;42h (profilattico)","Evitare mantenimento catetere","6&ndash;12h dopo, alto indice di cautela"]
+];
+
+const URGENT = [
+  {
+    id:"warfarin-rev", name:"Warfarin &mdash; reversal urgente", tag:"AVK",
+    approach:"Vitamina K 5&ndash;10 mg EV (azione in 6&ndash;12h) associata a concentrato di complesso protrombinico a 4 fattori (PCC), dosato secondo INR e peso corporeo, per correzione immediata dell'emostasi",
+    alt:"In assenza di PCC: plasma fresco congelato, con limiti di volume infuso e maggiore lentezza d'azione",
+    caveat:"Il solo plasma fresco congelato spesso non normalizza completamente l'INR: preferire il PCC quando disponibile per la chirurgia realmente urgente."
+  },
+  {
+    id:"dabigatran-rev", name:"Dabigatran &mdash; reversal urgente", tag:"anti-IIa",
+    approach:"Idarucizumab 5 g EV (due boli da 2,5 g), reversal specifico, rapido (minuti) e pressoch&eacute; completo nella maggior parte dei casi",
+    alt:"Se idarucizumab non disponibile: PCC a 4 fattori off-label, emodialisi possibile per la componente non legata alle proteine plasmatiche",
+    caveat:"&Egrave; l'antidoto specifico meglio caratterizzato tra i DOAC; efficacia confermata anche in chirurgia/neurochirurgia d'urgenza in revisioni recenti."
+  },
+  {
+    id:"fxa-rev", name:"Apixaban / Rivaroxaban &mdash; reversal urgente", tag:"anti-Xa",
+    approach:"Andexanet alfa dove disponibile: dose bassa o alta in base a farmaco, dosaggio e tempo dall'ultima assunzione (bolo EV seguito da infusione fino a 120 minuti)",
+    alt:"PCC a 4 fattori off-label (25&ndash;50 UI/kg) quando andexanet non &egrave; disponibile: nella pratica reale rappresenta l'opzione pi&ugrave; utilizzata (fino all'87% dei casi in audit multicentrici) per costo, disponibilit&agrave; e tempi di somministrazione pi&ugrave; rapidi",
+    caveat:"Andexanet alfa pu&ograve; indurre resistenza transitoria all'eparina durante procedure che la richiedono (es. angioplastica coronarica emergente): da tenere presente se &egrave; prevista eparinizzazione a breve distanza."
+  },
+  {
+    id:"edoxaban-rev", name:"Edoxaban &mdash; reversal urgente", tag:"anti-Xa",
+    approach:"Nessun antidoto specifico approvato: PCC a 4 fattori off-label come per rivaroxaban/apixaban in assenza di andexanet",
+    alt:"Misure di supporto generale, carbone attivo se ingestione recentissima (&lt;2h) in contesto non chirurgico",
+    caveat:"Dati di efficacia pi&ugrave; limitati rispetto agli altri anti-Xa: la decisione va condivisa con ematologia."
+  },
+  {
+    id:"heparin-rev", name:"Eparina (UFH/EBPM) &mdash; reversal urgente", tag:"antitrombina-mediato",
+    approach:"Protamina solfato: neutralizzazione pressoch&eacute; completa dell'UFH (1 mg protamina per 100 UI di eparina residua); neutralizzazione solo parziale (60&ndash;75%) dell'attivit&agrave; anti-Xa dell'EBPM",
+    alt:"Per EBPM, dose di protamina calcolata sulla base della dose e del tempo trascorso dall'ultima somministrazione (effetto decrescente oltre le 8h)",
+    caveat:"Somministrazione lenta EV (rischio di ipotensione/reazioni anafilattoidi, pi&ugrave; frequenti con esposizione pregressa a insulina protaminata o vasectomia)."
+  }
+];
+
+const URGENT_BY_DRUG = {
+  "asa": [
+    {drug:"Nessun antidoto farmacologico specifico", role:"info", note:"L'inibizione piastrinica &egrave; irreversibile per la vita della piastrina (7&ndash;10 giorni); in urgenza si gestisce il rischio residuo, non lo si annulla."},
+    {drug:"Desmopressina (DDAVP)", dose:"0,3 mcg/kg EV in 20&ndash;30 min", role:"adj", note:"Migliora la funzione piastrinica residua; effetto modesto ma utile come adiuvante."},
+    {drug:"Trasfusione piastrinica", dose:"1 pool da aferesi o 4&ndash;6 unit&agrave; random", role:"adj", note:"Da riservare a sanguinamento maggiore refrattario, non a profilassi routinaria."},
+    {drug:"Acido tranexamico", dose:"1 g EV in bolo, eventuale infusione 1 g/8h", role:"adj", note:"Misura aggiuntiva ragionevole in assenza di controindicazioni (es. storia tromboembolica recente)."}
+  ],
+  "clopidogrel": [
+    {drug:"Trasfusione piastrinica", dose:"1&ndash;2 pool da aferesi", role:"primary", note:"Efficace soprattutto se somministrata a distanza (&gt;4&ndash;6h) dall'ultima dose, quando il metabolita attivo circolante si &egrave; ridotto."},
+    {drug:"Desmopressina (DDAVP)", dose:"0,3 mcg/kg EV", role:"adj", note:"Adiuvante alla trasfusione piastrinica."},
+    {drug:"Acido tranexamico", dose:"1 g EV in bolo &plusmn; infusione", role:"adj", note:"Misura di supporto generale."}
+  ],
+  "prasugrel": [
+    {drug:"Trasfusione piastrinica", dose:"1&ndash;2 pool da aferesi", role:"primary", note:"Come per clopidogrel; il legame irreversibile e la maggiore potenza rendono il sanguinamento pi&ugrave; difficile da controllare."},
+    {drug:"Desmopressina (DDAVP)", dose:"0,3 mcg/kg EV", role:"adj"},
+    {drug:"Acido tranexamico", dose:"1 g EV in bolo &plusmn; infusione", role:"adj"}
+  ],
+  "ticagrelor": [
+    {drug:"Trasfusione piastrinica", dose:"1&ndash;2 pool da aferesi", role:"info", note:"Efficacia limitata se l'ultima dose &egrave; recente: il metabolita attivo circolante inibisce anche le piastrine trasfuse. Pi&ugrave; utile se somministrata &gt;24h dall'ultima assunzione."},
+    {drug:"Acido tranexamico", dose:"1 g EV in bolo &plusmn; infusione", role:"adj"},
+    {drug:"Desmopressina (DDAVP)", dose:"0,3 mcg/kg EV", role:"adj", note:"Beneficio incerto ma spesso utilizzata come misura aggiuntiva."}
+  ],
+  "cangrelor": [
+    {drug:"Sospendere l'infusione e attendere", dose:"Risoluzione dell'effetto in 1&ndash;3 ore", role:"primary", note:"Emivita ultra-breve: nella maggior parte dei casi non serve alcun antidoto, basta interrompere l'infusione con adeguato anticipo."}
+  ],
+  "gp2b3a": [
+    {drug:"Trasfusione piastrinica", dose:"1&ndash;2 pool da aferesi", role:"primary", note:"Utile soprattutto per abciximab (legame recettoriale prolungato); meno necessaria per eptifibatide/tirofiban, il cui effetto si risolve rapidamente con la sola sospensione."},
+    {drug:"Sospendere e attendere", role:"info", note:"Per eptifibatide/tirofiban la normalizzazione avviene in 4&ndash;8h dalla sospensione grazie alla clearance renale rapida."}
+  ],
+  "dipiridamolo": [
+    {drug:"Nessuna misura specifica generalmente necessaria", role:"info", note:"Azione antiaggregante debole; in caso di sanguinamento significativo, gestione come per aspirina."}
+  ],
+  "warfarin": [
+    {drug:"Concentrato di complesso protrombinico a 4 fattori (PCC)", dose:"25&ndash;50 UI/kg secondo INR e peso", role:"primary", note:"Correzione rapida (minuti) dell'emostasi; da associare sempre a vitamina K per un effetto duraturo."},
+    {drug:"Vitamina K (fitomenadione)", dose:"5&ndash;10 mg EV lenta", role:"primary", note:"Azione in 6&ndash;12h: da somministrare insieme al PCC, non in sostituzione."},
+    {drug:"Plasma fresco congelato", dose:"10&ndash;15 ml/kg", role:"info", note:"Alternativa se il PCC non &egrave; disponibile; pi&ugrave; lento e con limiti di volume infondibile."}
+  ],
+  "dabigatran": [
+    {drug:"Idarucizumab", dose:"5 g EV (due boli da 2,5 g)", role:"primary", note:"Antidoto specifico, reversal rapido (minuti) e pressoch&eacute; completo nella maggior parte dei casi."},
+    {drug:"PCC a 4 fattori", dose:"25&ndash;50 UI/kg off-label", role:"info", note:"Alternativa se idarucizumab non disponibile."},
+    {drug:"Emodialisi", role:"info", note:"Opzione aggiuntiva per la quota di farmaco non legata alle proteine plasmatiche, se il tempo lo consente."}
+  ],
+  "apixaban": [
+    {drug:"Andexanet alfa", dose:"Bolo + infusione fino a 120 min, dose bassa o alta secondo farmaco/dose/tempo dall'ultima assunzione", role:"primary", note:"Antidoto specifico dove disponibile. Pu&ograve; indurre resistenza transitoria all'eparina in procedure che la richiedono (es. PCI emergente)."},
+    {drug:"PCC a 4 fattori", dose:"25&ndash;50 UI/kg off-label", role:"primary", note:"Nella pratica reale &egrave; l'opzione pi&ugrave; usata (fino all'87% dei casi in audit), per disponibilit&agrave;, costo e rapidit&agrave; di somministrazione."}
+  ],
+  "rivaroxaban": [
+    {drug:"Andexanet alfa", dose:"Bolo + infusione fino a 120 min, dose secondo farmaco/dose/tempo dall'ultima assunzione", role:"primary", note:"Dove disponibile; attenzione alla resistenza transitoria all'eparina indotta."},
+    {drug:"PCC a 4 fattori", dose:"25&ndash;50 UI/kg off-label", role:"primary", note:"Alternativa pi&ugrave; frequentemente utilizzata nella pratica reale."}
+  ],
+  "edoxaban": [
+    {drug:"PCC a 4 fattori", dose:"25&ndash;50 UI/kg off-label", role:"primary", note:"Andexanet alfa non ha approvazione formale per edoxaban (dati insufficienti): il PCC resta la principale opzione."},
+    {drug:"Acido tranexamico", dose:"1 g EV in bolo &plusmn; infusione", role:"adj"}
+  ],
+  "ufh-iv": [
+    {drug:"Protamina solfato", dose:"1 mg per 100 UI di eparina residua stimata", role:"primary", note:"Neutralizzazione pressoch&eacute; completa; somministrare lentamente EV per il rischio di ipotensione/reazioni anafilattoidi."}
+  ],
+  "ufh-sc": [
+    {drug:"Sospendere e attendere", role:"primary", note:"Alle dosi di tromboprofilassi standard, raramente serve un antidoto: l'effetto &egrave; modesto e si esaurisce rapidamente."},
+    {drug:"Protamina solfato", dose:"Da calcolare sulla dose stimata assorbita", role:"info", note:"Da riservare a sanguinamento significativo persistente."}
+  ],
+  "lmwh-prophylactic": [
+    {drug:"Sospendere e attendere", role:"primary", note:"Alle dosi profilattiche, l'effetto residuo &egrave; generalmente modesto; l'urgenza vera raramente richiede antidoto."},
+    {drug:"Protamina solfato", dose:"Secondo dose e tempo dall'ultima somministrazione", role:"info", note:"Neutralizzazione solo parziale (60&ndash;75%) dell'attivit&agrave; anti-Xa."}
+  ],
+  "lmwh-therapeutic": [
+    {drug:"Protamina solfato", dose:"1 mg per 1 mg di enoxaparina (o equivalente) se entro 8h dall'ultima dose; met&agrave; dose oltre le 8h", role:"primary", note:"Neutralizzazione solo parziale (60&ndash;75%) dell'attivit&agrave; anti-Xa: il sanguinamento pu&ograve; persistere nonostante la somministrazione."},
+    {drug:"PCC a 4 fattori", dose:"25&ndash;50 UI/kg off-label", role:"info", note:"Da considerare se il sanguinamento non &egrave; controllato dalla sola protamina."}
+  ],
+  "fondaparinux": [
+    {drug:"Nessun antidoto specifico disponibile", role:"info", note:"La gestione si basa su misure di supporto emostatico generale e, se disponibile, PCC a 4 fattori con evidenza limitata."},
+    {drug:"Acido tranexamico", dose:"1 g EV in bolo &plusmn; infusione", role:"adj"}
+  ]
+};
+
+const ROLE_LABEL = {primary:"Prima linea", info:"Alternativa / da valutare", adj:"Adiuvante"};
+const ROLE_CLASS = {primary:"ok", info:"", adj:"plate"};
+
+/* ================= RENDER ================= */
+
+function drugCard(d, cls){
+  const rows = [];
+  if(d.stop) rows.push(["Sospensione elettiva", d.stop]);
+  if(d.stopHigh) rows.push(["Chirurgia ad altissimo rischio", d.stopHigh]);
+  if(d.target) rows.push(["Target pre-procedura", d.target]);
+  if(d.neuraxial) rows.push(["Blocco neuroassiale/profondo", d.neuraxial]);
+  if(d.resume) rows.push(["Ripresa post-procedura", d.resume]);
+
+  const statsHtml = rows.map(r=>`
+    <div class="stat">
+      <div class="k">${r[0]}</div>
+      <div class="v" style="font-weight:500;font-size:14px;">${r[1]}</div>
+    </div>`).join("");
+
+  return `
+  <div class="drug-card ${cls}" id="card-${d.id}">
+    <div class="drug-head" onclick="this.parentElement.classList.toggle('open')">
+      <div>
+        <div class="drug-name">${d.name}</div>
+        <div class="drug-tag">${d.tag}</div>
+      </div>
+      <div class="chev">&#9656;</div>
+    </div>
+    <div class="drug-body">
+      <div class="grid2">${statsHtml}</div>
+      ${d.note ? `<div class="note"><strong>Nota:</strong> ${d.note}</div>` : ""}
+    </div>
+  </div>`;
+}
+
+function urgentCard(d){
+  return `
+  <div class="drug-card urg" id="card-${d.id}">
+    <div class="drug-head" onclick="this.parentElement.classList.toggle('open')">
+      <div>
+        <div class="drug-name">${d.name}</div>
+        <div class="drug-tag">${d.tag}</div>
+      </div>
+      <div class="chev">&#9656;</div>
+    </div>
+    <div class="drug-body">
+      <div class="note" style="margin-top:0;"><strong>Approccio di prima linea:</strong> ${d.approach}</div>
+      <div class="note"><strong>Alternativa:</strong> ${d.alt}</div>
+      <div class="note"><strong>Attenzione:</strong> ${d.caveat}</div>
+    </div>
+  </div>`;
+}
+
+document.getElementById("plate-list").innerHTML = PLATELETS.map(d=>drugCard(d,"plate")).join("");
+document.getElementById("anti-list").innerHTML = ANTICOAG.map(d=>drugCard(d,"anti")).join("");
+document.getElementById("urg-list").innerHTML = URGENT.map(urgentCard).join("");
+
+document.getElementById("neur-table-body").innerHTML = NEURAXIAL_TABLE.map(r=>`
+  <tr><td class="hi">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>
+`).join("");
+
+/* ---- Selettore urgenza ---- */
+const urgAllDrugs = [
+  ...PLATELETS.map(d=>({id:d.id, name:d.name, tag:d.tag, group:"Antiaggregante"})),
+  ...ANTICOAG.map(d=>({id:d.id, name:d.name, tag:d.tag, group:"Anticoagulante"}))
+];
+const urgSelect = document.getElementById("urg-drug-select");
+urgSelect.innerHTML =
+  `<optgroup label="Antiaggreganti">` +
+  urgAllDrugs.filter(d=>d.group==="Antiaggregante").map(d=>`<option value="${d.id}">${d.name}</option>`).join("") +
+  `</optgroup><optgroup label="Anticoagulanti">` +
+  urgAllDrugs.filter(d=>d.group==="Anticoagulante").map(d=>`<option value="${d.id}">${d.name}</option>`).join("") +
+  `</optgroup>`;
+
+function renderUrgSelector(){
+  const id = urgSelect.value;
+  const drug = urgAllDrugs.find(d=>d.id===id);
+  const options = URGENT_BY_DRUG[id] || [];
+  const out = document.getElementById("urg-selector-result");
+  if(!drug || options.length===0){
+    out.innerHTML = `<div class="note">Nessuna scheda specifica disponibile per questo farmaco.</div>`;
+    return;
+  }
+  const rows = options.map(o=>`
+    <div class="stat" style="margin-bottom:8px;">
+      <div class="k" style="display:flex;justify-content:space-between;align-items:center;">
+        <span>${o.dose ? "Dose" : ""}</span>
+        <span class="pill ${ROLE_CLASS[o.role]}" style="margin:0;">${ROLE_LABEL[o.role]}</span>
+      </div>
+      <div class="v" style="font-weight:600;font-size:15px;margin-top:6px;">${o.drug}</div>
+      ${o.dose ? `<div class="note" style="margin-top:4px;"><strong>Dose/modalit&agrave;:</strong> ${o.dose}</div>` : ""}
+      ${o.note ? `<div class="note">${o.note}</div>` : ""}
+    </div>
+  `).join("");
+
+  out.innerHTML = `
+    <div class="callout urgent" style="margin-bottom:12px;">
+      <span class="lbl">${drug.group} in corso &mdash; ${drug.name}</span>
+      Farmaci/strategie da valutare per la chirurgia urgente, in ordine di priorit&agrave;.
+    </div>
+    ${rows}
+  `;
+}
+urgSelect.addEventListener("change", renderUrgSelector);
+renderUrgSelector();
+
+/* ================= TABS ================= */
+const tabs = document.querySelectorAll("nav.tabs button");
+tabs.forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    tabs.forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    document.querySelectorAll("section.view").forEach(v=>v.classList.remove("active"));
+    document.getElementById("view-"+btn.dataset.view).classList.add("active");
+    window.scrollTo({top:0,behavior:"instant"});
+  });
+});
+
+/* ================= SEARCH ================= */
+function wireSearch(inputId, listId, cls){
+  const input = document.getElementById(inputId);
+  input.addEventListener("input", ()=>{
+    const q = input.value.trim().toLowerCase();
+    document.querySelectorAll("#"+listId+" ."+cls).forEach(card=>{
+      const text = card.textContent.toLowerCase();
+      card.classList.toggle("hidden", q.length>0 && !text.includes(q));
+    });
+  });
+}
+wireSearch("search-plate","plate-list","drug-card");
+wireSearch("search-anti","anti-list","drug-card");
+
+/* ================= TOOL ================= */
+const ALL_DRUGS = [
+  ...PLATELETS.map(d=>({...d, group:"plate", groupLabel:"Antiaggregante"})),
+  ...ANTICOAG.map(d=>({...d, group:"anti", groupLabel:"Anticoagulante"}))
+];
+const toolDrugSel = document.getElementById("tool-drug");
+toolDrugSel.innerHTML = ALL_DRUGS.map(d=>`<option value="${d.id}">${d.name}</option>`).join("");
+
+function renderTool(){
+  const drug = ALL_DRUGS.find(d=>d.id===toolDrugSel.value);
+  const ctx = document.getElementById("tool-context").value;
+  const out = document.getElementById("tool-result");
+  if(!drug){out.innerHTML="";return;}
+
+  let calloutClass = "info";
+  let label = drug.groupLabel;
+  let body = "";
+
+  if(ctx==="elective-low"){
+    body = drug.stop || "Nessuna indicazione specifica trovata.";
+    calloutClass="ok"; label="Chirurgia elettiva &mdash; basso rischio";
+  } else if(ctx==="elective-high"){
+    body = (drug.stopHigh ? drug.stopHigh+"<br>" : "") + (drug.stop || "");
+    calloutClass="info"; label="Chirurgia elettiva &mdash; alto rischio";
+  } else if(ctx==="neuraxial"){
+    body = drug.neuraxial || "Nessun dato specifico neuroassiale in scheda: verificare intervallo generale e consulenza specialistica.";
+    calloutClass="info"; label="Blocco neuroassiale/profondo";
+  } else if(ctx==="urgent"){
+    const rev = URGENT.find(u=>u.id.startsWith(drug.id) || drug.name.toLowerCase().includes(u.name.toLowerCase().split(" ")[0].toLowerCase()));
+    if(rev){
+      body = `<strong>${rev.approach}</strong><br><br>Alternativa: ${rev.alt}<br><br>${rev.caveat}`;
+    } else if(drug.group==="plate"){
+      body = "Nessun antidoto specifico. Valutare trasfusione piastrinica (efficacia limitata con ticagrelor recente), desmopressina e acido tranexamico come misure di supporto. Vedi scheda 'Antiaggreganti in urgenza'.";
+    } else {
+      body = "Consultare la sezione Urgenza &amp; reversal per il farmaco specifico.";
+    }
+    calloutClass="urgent"; label="Chirurgia urgente/non differibile";
+  }
+
+  out.innerHTML = `
+    <div class="callout ${calloutClass}">
+      <span class="lbl">${label} &mdash; ${drug.name}</span>
+      ${body}
+    </div>
+    ${drug.note ? `<div class="note">Nota generale sul farmaco: ${drug.note}</div>` : ""}
+  `;
+}
+toolDrugSel.addEventListener("change", renderTool);
+document.getElementById("tool-context").addEventListener("change", renderTool);
+renderTool();
+</script>
+</body>
+</html>
