@@ -223,6 +223,10 @@ section.view.active{display:block;}
 }
 .pill.plate{background:var(--plate-bg);color:var(--plate);}
 .pill.urg{background:var(--urg-bg);color:var(--urg);}
+.upd{display:inline-block;vertical-align:middle;font-family:var(--mono);font-size:10.5px;font-weight:600;padding:1px 7px;border-radius:20px;background:var(--neur-bg);color:var(--neur);margin-left:6px;white-space:nowrap;}
+.update-box{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--neur);border-radius:var(--radius);padding:14px 16px;margin:0 0 18px 0;font-size:14px;}
+.update-box ul{margin:8px 0 0 0;padding-left:18px;}
+.update-box li{margin:3px 0;}
 .pill.ok{background:var(--ok-bg);color:var(--ok);}
 
 /* ---------- Tables ---------- */
@@ -359,7 +363,22 @@ footer .refs div{margin-bottom:4px;}
 <section class="view active" id="view-home">
   <div class="section-head">
     <h2>Come usare questa app</h2>
-    <p>Contenuti aggiornati alle linee guida ASRA 5&ordf; edizione (2025), ESAIC/ESRA (linee guida congiunte 2022, aggiornamento anestesia loco-regionale in pazienti in terapia antitrombotica), ESAIC valutazione preoperatoria (2025) e consensus multisocietario SEC/SEDAR e affini (2025) sulla gestione perioperatoria e periprocedurale della terapia antitrombotica.</p>
+    <p>Contenuti aggiornati alle linee guida ASRA 5&ordf; edizione (2026), ESAIC/ESRA (linee guida congiunte 2022, aggiornamento anestesia loco-regionale in pazienti in terapia antitrombotica), ESAIC valutazione preoperatoria (2025) e consensus multisocietario SEC/SEDAR e affini (2025) sulla gestione perioperatoria e periprocedurale della terapia antitrombotica.</p>
+  </div>
+
+  <div class="update-box" id="update-box">
+    <span class="lbl" style="font-family:var(--mono);font-size:12px;font-weight:700;color:var(--neur);text-transform:uppercase;letter-spacing:.03em;">Aggiornamento del 21/11/2026</span>
+    <p style="margin:6px 0 0 0;">Intervalli per blocco neuroassiale e profondo, gestione del catetere e ripresa della terapia rivisti sulla base di: Kopp SL, Vandermeulen E, McBane RD, Perlas A, Leffert L, Horlocker T. <strong>Regional anesthesia in the patient receiving antithrombotic or thrombolytic therapy: American Society of Regional Anesthesia and Pain Medicine Evidence-Based Guidelines (fifth edition).</strong> Reg Anesth Pain Med. 2026;51:1233&ndash;1261. doi:10.1136/rapm-2024-105766 (pubblicato online il 29 gennaio 2025).</p>
+    <ul>
+      <li>Dabigatran high dose: 120h con CrCl 30&ndash;49; blocco sconsigliato con CrCl &lt;30 salvo livello &lt;30 ng/mL.</li>
+      <li>Ticagrelor: 5 giorni; catetere da non mantenere con ticagrelor e prasugrel; ripresa P2Y12 6h dopo la rimozione se dose di carico.</li>
+      <li>EBPM: nuovi tempi di prima dose postoperatoria e gestione del catetere; puntura traumatica &rarr; ritardo di 24h.</li>
+      <li>Fondaparinux ed eparina SC: intervalli espliciti per dosaggio e funzione renale.</li>
+      <li>DOAC: tempi tra rimozione del catetere e prima dose (24h high dose, 6h low dose) e condotta se assunti con catetere in sede.</li>
+      <li>Nuove schede: cilostazolo, cangrelor, inibitori diretti della trombina EV, trombolitici, gravidanza, blocchi periferici, cardiochirurgia; antidoti DOAC da non usare solo per eseguire un blocco.</li>
+      <li>Sorveglianza neurologica estesa a 48h per warfarin e trombolitici.</li>
+    </ul>
+    <p class="note" style="margin-top:8px;">Le schede modificate sono contrassegnate da <span class="upd" style="margin-left:0;">Aggiornato ASRA 5&ordf; ed.</span>; nella tabella dei blocchi le righe aggiornate sono indicate con &#9733;. I tempi di sospensione per la sola chirurgia (senza blocco) non sono stati modificati.</p>
   </div>
 
   <div class="grid2">
@@ -368,8 +387,8 @@ footer .refs div{margin-bottom:4px;}
       <p class="note" style="margin-top:0;">La decisione non dipende solo dal farmaco, ma dall'incrocio tra <strong>rischio emorragico della procedura</strong>, <strong>rischio trombotico del paziente</strong> e, per i blocchi centrali, <strong>rischio di ematoma spinale/epidurale</strong>. Nessuna di queste tre dimensioni va valutata isolatamente.</p>
     </div>
     <div class="card">
-      <div class="drug-name" style="margin-bottom:6px;">Terminologia 2025</div>
-      <p class="note" style="margin-top:0;">ASRA 2025 abbandona i termini "profilattico/terapeutico" a favore di <strong>"low dose / high dose"</strong> per gli anticoagulanti, allineandosi a ESAIC/ESRA. Questa app usa la stessa classificazione.</p>
+      <div class="drug-name" style="margin-bottom:6px;">Terminologia ASRA 5&ordf; ed.</div>
+      <p class="note" style="margin-top:0;">ASRA 5&ordf; ed. abbandona i termini "profilattico/terapeutico" a favore di <strong>"low dose / high dose"</strong> per gli anticoagulanti, allineandosi a ESAIC/ESRA. Questa app usa la stessa classificazione.</p>
     </div>
   </div>
 
@@ -397,7 +416,7 @@ footer .refs div{margin-bottom:4px;}
 <section class="view" id="view-plate">
   <div class="section-head">
     <h2>Farmaci antiaggreganti</h2>
-    <p>Tempistiche di sospensione elettiva (chirurgia generale) e intervalli specifici per blocco neuroassiale/profondo secondo ASRA 5&ordf; ed. (2025). Per lo stent coronarico, la durata minima di DAPT viene sempre valutata insieme alla cardiologia interventistica.</p>
+    <p>Tempistiche di sospensione elettiva (chirurgia generale) e intervalli specifici per blocco neuroassiale/profondo secondo ASRA 5&ordf; ed. (Reg Anesth Pain Med 2026;51:1233&ndash;1261). Per lo stent coronarico, la durata minima di DAPT viene sempre valutata insieme alla cardiologia interventistica.</p>
   </div>
 
   <input class="searchbar" id="search-plate" placeholder="Cerca un farmaco (es. clopidogrel, ticagrelor)...">
@@ -445,21 +464,28 @@ footer .refs div{margin-bottom:4px;}
 <section class="view" id="view-neur">
   <div class="section-head">
     <h2>Anestesia loco-regionale e neuroassiale</h2>
-    <p>Intervalli tra ultima dose del farmaco e blocco/posizionamento o rimozione di catetere, secondo ASRA 5&ordf; edizione (2025) e linee guida congiunte ESAIC/ESRA. Valgono anche per i blocchi profondi del plesso/nervi periferici (es. plesso lombare, sciatico prossimale), non solo per spinale/epidurale.</p>
+    <p>Intervalli tra ultima dose del farmaco e blocco/posizionamento o rimozione di catetere, secondo ASRA 5&ordf; edizione (Reg Anesth Pain Med 2026;51:1233&ndash;1261, aggiornamento del 21/11/2026) e, dove indicato, linee guida congiunte ESAIC/ESRA 2022. Valgono anche per i blocchi profondi del plesso/nervi periferici (es. plesso lombare, sciatico prossimale), non solo per spinale/epidurale.</p>
   </div>
 
   <div class="callout info">
-    <span class="lbl">Principio ASRA 2025</span>
-    Il rischio di ematoma spinale &egrave; l'evento guida di tutte le raccomandazioni su blocco centrale/profondo. Le finestre qui indicate sono generalmente <strong>pi&ugrave; lunghe</strong> di quelle richieste per la sola chirurgia generale nello stesso paziente. Per i DOAC ad alto dosaggio, ASRA 2025 introduce la possibilit&agrave; di verificare un <strong>livello residuo accettabile</strong> (concentrazione plasmatica &lt;30 ng/mL o attivit&agrave; anti-Xa &le;0,1 UI/mL) come alternativa/complemento all'attesa basata solo sul tempo, quando il dosaggio &egrave; disponibile in tempi utili.
+    <span class="lbl">Principio ASRA 5&ordf; ed.</span>
+    Il rischio di ematoma spinale &egrave; l'evento guida di tutte le raccomandazioni su blocco centrale/profondo. Le finestre qui indicate sono generalmente <strong>pi&ugrave; lunghe</strong> di quelle richieste per la sola chirurgia generale nello stesso paziente. Per i DOAC (alto e basso dosaggio), EBPM e fondaparinux, ASRA 5&ordf; ed. introduce la possibilit&agrave; di verificare un <strong>livello residuo accettabile</strong> (concentrazione plasmatica &lt;30 ng/mL o attivit&agrave; anti-Xa &le;0,1 UI/mL) come alternativa/complemento all'attesa basata solo sul tempo, quando il dosaggio &egrave; disponibile in tempi utili.
   </div>
 
   <div class="tbl-wrap">
     <table>
       <thead>
-        <tr><th>Farmaco</th><th>Prima del blocco/inserimento catetere</th><th>Rimozione catetere</th><th>Ripresa dopo blocco/rimozione</th></tr>
+        <tr><th>Farmaco</th><th>Ultima dose &rarr; blocco/inserimento</th><th>Catetere in sede e rimozione</th><th>Prima dose dopo blocco/rimozione</th><th>Fonte e grado</th></tr>
       </thead>
       <tbody id="neur-table-body"></tbody>
     </table>
+  </div>
+
+  <p class="note">Basso dosaggio = ex "profilattico"; alto dosaggio = ex "terapeutico". Per i DOAC l'intervallo low dose corrisponde a 2 emivite, quello high dose a 5 emivite. &#9733; = riga aggiornata il 21/11/2026 su ASRA 5&ordf; ed.</p>
+
+  <div class="callout urgent">
+    <span class="lbl">Antidoti dei DOAC e blocchi &mdash; nuova raccomandazione</span>
+    ASRA 5&ordf; ed. sconsiglia l'uso di idarucizumab, andexanet alfa, PCC o aPCC per annullare l'effetto dei DOAC al solo scopo di eseguire un blocco neuroassiale o profondo nei pazienti di routine (grado IIC). Se l'intervento pu&ograve; essere rinviato, la scelta preferibile &egrave; attendere il recupero spontaneo dell'emostasi. Se non si pu&ograve; attendere e il blocco &egrave; necessario, pu&ograve; essere considerato dopo reversal completo del dabigatran con idarucizumab.
   </div>
 
   <div class="section-head" style="margin-top:22px;">
@@ -467,14 +493,41 @@ footer .refs div{margin-bottom:4px;}
   </div>
   <div class="callout ok">
     <span class="lbl">Nessuna precauzione aggiuntiva richiesta</span>
-    <strong>Aspirina/FANS</strong> in monoterapia non richiedono sospensione n&eacute; intervallo di attesa per l'esecuzione di blocchi neuroassiali o periferici (ASRA). Le <strong>eparine sottocutanee a basse dosi per tromboprofilassi standard (UFH 5000 UI x2&ndash;3/die)</strong> non controindicano il blocco, ma si raccomanda comunque un intervallo prudenziale di alcune ore dall'ultima somministrazione e attenzione alla concomitanza con altri farmaci emostaticamente attivi. I fitoterapici comuni (aglio, ginkgo, ginseng) non aumentano di per s&eacute; il rischio in modo clinicamente rilevante.
+    <strong>Aspirina/FANS</strong> in monoterapia non richiedono sospensione n&eacute; intervallo di attesa per l'esecuzione di blocchi neuroassiali o periferici (ASRA). L'<strong>eparina sottocutanea a basse dosi (UFH 5000 UI x2&ndash;3/die)</strong> non controindica il blocco: eseguirlo almeno 4&ndash;6 ore dopo l'ultima dose, oppure con coagulazione verificata normale (ASRA, grado IIC), con attenzione ai farmaci concomitanti. I <strong>fitoterapici</strong> (aglio, ginkgo, ginseng) non richiedono sospensione obbligatoria n&eacute; impediscono il blocco (grado IC).
   </div>
 
   <div class="section-head" style="margin-top:10px;">
     <h2>Sorveglianza dopo blocco centrale</h2>
   </div>
   <div class="card">
-    <p class="note" style="margin-top:0;">In pazienti in terapia anticoagulante con catetere neuroassiale in sede, &egrave; raccomandata una valutazione neurologica (funzione motoria e sensitiva) programmata e ripetuta, con soluzioni analgesiche a bassa concentrazione per non mascherare un deficit incipiente. La sorveglianza va proseguita per almeno 24 ore dopo l'ultima dose di anticoagulante e per almeno 24 ore dopo la rimozione del catetere; qualunque nuovo deficit motorio, dolore dorsale intenso o disfunzione sfinterica impone RM urgente e valutazione neurochirurgica immediata.</p>
+    <p class="note" style="margin-top:0;">In pazienti in terapia anticoagulante con catetere neuroassiale in sede, &egrave; raccomandata una valutazione neurologica (funzione motoria e sensitiva) programmata e ripetuta, con soluzioni analgesiche a bassa concentrazione per non mascherare un deficit incipiente. La sorveglianza va proseguita per almeno 24 ore dopo la rimozione del catetere e per almeno <strong>48 ore</strong> dopo la rimozione in corso di warfarin o dopo trombolisi (ASRA 5&ordf; ed., grado IIC); qualunque nuovo deficit motorio, dolore dorsale intenso o disfunzione sfinterica impone RM urgente e valutazione neurochirurgica immediata.</p>
+  </div>
+
+  <div class="section-head" style="margin-top:22px;">
+    <h2>Blocchi di plesso e periferici <span class="upd">Aggiornato ASRA 5&ordf; ed.</span></h2>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Tipo di blocco</th><th>Indicazione ASRA 5&ordf; ed.</th></tr></thead>
+      <tbody>
+        <tr><td class="hi">Plesso profondo o periferico profondo (es. plesso lombare, paravertebrale, simpatico lombare, infraclaveare, ganglio stellato)</td><td>Applicare le stesse regole del blocco neuroassiale (grado IC). Il rischio maggiore &egrave; l'emorragia in sede non comprimibile, pi&ugrave; che il danno neurologico.</td></tr>
+        <tr><td class="hi">Altri blocchi di plesso o periferici</td><td>Esecuzione, mantenimento e rimozione del catetere decisi in base a comprimibilit&agrave; della sede, vascolarizzazione e conseguenze di un eventuale sanguinamento (grado IIC). ESAIC/ESRA: i blocchi superficiali possono essere eseguiti senza intervallo, qualunque sia la dose.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-head" style="margin-top:22px;">
+    <h2>Gravidanza e parto <span class="upd">Aggiornato ASRA 5&ordf; ed.</span></h2>
+  </div>
+  <div class="card">
+    <p class="note" style="margin-top:0;">Nella partoriente in profilassi o terapia anticoagulante si applicano le stesse raccomandazioni della popolazione non gravida (grado IIC). In casi selezionati ad alto rischio trombotico che richiedono un intervento urgente per indicazione materna o fetale, quando il rischio dell'anestesia generale supera quello del blocco, sono possibili eccezioni, dopo discussione multidisciplinare e valutazione rischio-beneficio (grado IIC). Ogni punto nascita dovrebbe avere un protocollo per la sospensione degli anticoagulanti in vista del parto, valutando il passaggio a UFH per la sua emivita breve (ACOG, SOAP). L'incidenza di ematoma spinale in ostetricia &egrave; molto pi&ugrave; bassa che nella popolazione chirurgica anziana.</p>
+  </div>
+
+  <div class="section-head" style="margin-top:22px;">
+    <h2>Anticoagulazione non pianificata con catetere in sede <span class="upd">Aggiornato ASRA 5&ordf; ed.</span></h2>
+  </div>
+  <div class="card">
+    <p class="note" style="margin-top:0;">Se un paziente con catetere epidurale riceve un antitrombotico in urgenza (sindrome coronarica acuta, trombosi di protesi) o per errore di comunicazione, il servizio di terapia del dolore deve essere informato subito. ASRA suggerisce un sistema di allerta in farmacia: ogni prescrizione di antitrombotico in un paziente con infusione epidurale genera un avviso al servizio, che decide con gli altri specialisti tempi di rimozione e ripresa della terapia e intensifica il monitoraggio neurologico. Per DOAC, EBPM e trombolitici le condotte specifiche sono riportate nelle schede dei farmaci.</p>
   </div>
 </section>
 
@@ -544,7 +597,7 @@ footer .refs div{margin-bottom:4px;}
   <div class="tbl-wrap">
     <table>
       <tbody>
-        <tr><td>Kopp SL, Vandermeulen E, McBane RD, Perlas A, Leffert L, Horlocker T. <strong>Regional anesthesia in the patient receiving antithrombotic or thrombolytic therapy: ASRA Evidence-Based Guidelines (5th edition).</strong> Reg Anesth Pain Med. 2025.</td></tr>
+        <tr><td>Kopp SL, Vandermeulen E, McBane RD, Perlas A, Leffert L, Horlocker T. <strong>Regional anesthesia in the patient receiving antithrombotic or thrombolytic therapy: American Society of Regional Anesthesia and Pain Medicine Evidence-Based Guidelines (fifth edition).</strong> Reg Anesth Pain Med. 2026;51:1233&ndash;1261. doi:10.1136/rapm-2024-105766 (pubblicato online il 29 gennaio 2025). <em>Riferimento dell'aggiornamento del 21/11/2026.</em></td></tr>
         <tr><td><strong>Perioperative and periprocedural management of antithrombotic therapy</strong> &mdash; 2025 multisociety consensus document (SEC, SEDAR, SEACV, and affiliated Spanish societies). Rev Esp Cardiol. 2025.</td></tr>
         <tr><td>Lamperti M, Romero CS, Guarracino F, et al. <strong>Preoperative assessment of adults undergoing elective noncardiac surgery: updated ESAIC guidelines.</strong> Eur J Anaesthesiol. 2025;42(1):1-35.</td></tr>
         <tr><td><strong>Direct oral anticoagulant management for neuraxial anaesthesia and deep peripheral nerve blocks</strong> &mdash; comparison ASRA vs PAUSE protocol. Br J Anaesth. 2025.</td></tr>
@@ -556,6 +609,10 @@ footer .refs div{margin-bottom:4px;}
     </table>
   </div>
   <div class="callout info">
+    <span class="lbl">Riferimento dell'aggiornamento</span>
+    Il 21/11/2026 l'app &egrave; stata confrontata punto per punto con la 5&ordf; edizione delle linee guida ASRA (Kopp et al., Reg Anesth Pain Med 2026;51:1233&ndash;1261, doi:10.1136/rapm-2024-105766). Sono stati corretti o aggiunti gli intervalli relativi a blocco neuroassiale e profondo, catetere e ripresa della terapia; ogni indicazione ASRA riporta il grado di raccomandazione. I tempi di sospensione per la sola chirurgia derivano da altre fonti (ACCP 2022, ESAIC, consensus SEC/SEDAR) e non sono stati modificati.
+  </div>
+  <div class="callout info">
     <span class="lbl">Nota metodologica</span>
     I contenuti sintetizzano raccomandazioni di linee guida multiple, talvolta non concordanti nei dettagli (es. ASRA vs protocollo PAUSE per i DOAC in anestesia neuroassiale). In caso di discrepanza rilevante, la scheda del farmaco lo segnala esplicitamente: la scelta finale resta clinica e locale.
   </div>
@@ -565,59 +622,71 @@ footer .refs div{margin-bottom:4px;}
 
 <footer>
   <div>App di riferimento clinico &mdash; uso professionale. Verificare sempre dose, funzione renale/epatica e protocolli locali prima di applicare le indicazioni.</div>
+  <div style="margin-top:4px;">Ultimo aggiornamento: 21/11/2026 &mdash; ASRA 5&ordf; ed., Reg Anesth Pain Med 2026;51:1233&ndash;1261.</div>
 </footer>
 
 <script>
 /* ================= DATA ================= */
+/* Aggiornamento 21/11/2026: intervalli per blocco neuroassiale/profondo, catetere e ripresa allineati a
+   Kopp SL et al., ASRA Evidence-Based Guidelines 5th ed., Reg Anesth Pain Med 2026;51:1233-1261 (doi:10.1136/rapm-2024-105766).
+   upd:true = scheda modificata o aggiunta in questo aggiornamento. */
+const ASRA_REF = "ASRA 5&ordf; ed. (Reg Anesth Pain Med 2026;51:1233&ndash;1261)";
 
 const PLATELETS = [
   {
-    id:"asa", name:"Aspirina (ASA)", tag:"COX-1 inibitore irreversibile",
+    id:"asa", name:"Aspirina (ASA) e FANS", tag:"COX-1 inibitore irreversibile (aspirina); inibizione reversibile (FANS)",
     stop:"Non richiede sospensione nella maggior parte degli interventi",
     stopHigh:"Sospendere 5&ndash;7 giorni prima solo per chirurgia a rischissimo emorragico (es. neurochirurgia intracranica, camera posteriore oculare) o su specifica richiesta del chirurgo",
-    neuraxial:"Nessuna precauzione aggiuntiva richiesta (ASRA)",
+    neuraxial:"Nessun intervallo richiesto per blocco singolo, catetere, sorveglianza o rimozione del catetere, se in monoterapia (ASRA, grado IC). Il rischio aumenta in associazione con eparine, anticoagulanti orali o trombolitici",
     resume:"Ripresa immediata/entro 24h se sospesa",
     note:"In prevenzione secondaria cardiovascolare la sospensione va sempre discussa con cardiologia: il beneficio del mantenimento supera quasi sempre il rischio emorragico incrementale."
   },
   {
-    id:"clopidogrel", name:"Clopidogrel", tag:"Tienopiridina, inibitore P2Y12 irreversibile",
+    id:"clopidogrel", name:"Clopidogrel", tag:"Tienopiridina, inibitore P2Y12 irreversibile", upd:true,
     stop:"Sospendere 5 giorni prima (chirurgia generale)",
-    neuraxial:"5&ndash;7 giorni prima di blocco neuroassiale/profondo (ASRA)",
-    resume:"Dose di carico possibile 24h dopo il blocco/rimozione catetere; senza carico, limitare il catetere a 1&ndash;2 giorni",
+    neuraxial:"5&ndash;7 giorni prima di blocco neuroassiale/profondo (ASRA, grado IIC). Catetere mantenibile per 1&ndash;2 giorni dopo la ripresa, purch&eacute; non si somministri la dose di carico (grado IIC)",
+    resume:"Subito dopo il posizionamento dell'ago o la rimozione del catetere, se senza dose di carico; con dose di carico, attendere 6 ore dalla rimozione del catetere (ASRA, grado IIC)",
     note:"Verificare sempre la durata minima di DAPT residua se posizionato stent coronarico recente prima di sospendere."
   },
   {
-    id:"prasugrel", name:"Prasugrel", tag:"Tienopiridina di 3&ordf; generazione, pi&ugrave; potente e a esordio pi&ugrave; rapido di clopidogrel",
+    id:"prasugrel", name:"Prasugrel", tag:"Tienopiridina di 3&ordf; generazione, pi&ugrave; potente e a esordio pi&ugrave; rapido di clopidogrel", upd:true,
     stop:"Sospendere 7&ndash;10 giorni prima (chirurgia generale)",
-    neuraxial:"7&ndash;10 giorni prima di blocco neuroassiale/profondo",
-    resume:"Come clopidogrel: dose da carico 24h dopo, altrimenti catetere limitato a 1&ndash;2 giorni",
-    note:"Intervallo pi&ugrave; lungo di clopidogrel/ticagrelor per la maggiore potenza e irreversibilit&agrave; del legame."
+    neuraxial:"7&ndash;10 giorni prima di blocco neuroassiale/profondo (ASRA, grado IIC). Il catetere <strong>non va mantenuto</strong> in corso di prasugrel, per la rapidit&agrave; d'esordio (grado IIC)",
+    resume:"Subito dopo il posizionamento dell'ago o la rimozione del catetere, se senza dose di carico; con dose di carico, 6 ore dopo la rimozione (ASRA, grado IIC)",
+    note:"Intervallo pi&ugrave; lungo di clopidogrel per la maggiore potenza: nello studio farmacologico citato da ASRA il recupero di almeno il 90% della reattivit&agrave; piastrinica richiedeva 9 giorni."
   },
   {
-    id:"ticagrelor", name:"Ticagrelor", tag:"Ciclopentiltriazolopirimidina, inibitore P2Y12 reversibile",
-    stop:"Sospendere 3&ndash;5 giorni prima (chirurgia generale)",
-    neuraxial:"5&ndash;7 giorni prima di blocco neuroassiale/profondo (ASRA, prudenziale nonostante la reversibilit&agrave; del legame)",
-    resume:"Come clopidogrel/prasugrel",
-    note:"Il legame reversibile accorcia il recupero funzionale piastrinico rispetto ai tienopiridinici, ma ASRA mantiene un intervallo neuroassiale conservativo per la variabilit&agrave; individuale."
+    id:"ticagrelor", name:"Ticagrelor", tag:"Ciclopentiltriazolopirimidina, inibitore P2Y12 reversibile", upd:true,
+    stop:"Sospendere 3&ndash;5 giorni prima (chirurgia generale; ACCP 2022)",
+    neuraxial:"<strong>5 giorni</strong> prima di blocco neuroassiale/profondo (ASRA, grado 2C; nella 4&ordf; ed. erano 5&ndash;7 giorni). Il catetere <strong>non va mantenuto</strong> in corso di ticagrelor (grado IIC)",
+    resume:"Subito dopo il posizionamento dell'ago o la rimozione del catetere, se senza dose di carico; con dose di carico, 6 ore dopo la rimozione (ASRA, grado IIC)",
+    note:"Il legame reversibile accorcia il recupero piastrinico (circa 70% a 3 giorni, normale a 5 giorni): per questo ASRA ha ridotto l'intervallo a 5 giorni."
   },
   {
-    id:"cangrelor", name:"Cangrelor", tag:"Inibitore P2Y12 EV, emivita 3&ndash;6 minuti &mdash; farmaco di bridging",
+    id:"cangrelor", name:"Cangrelor", tag:"Inibitore P2Y12 EV, emivita 3&ndash;6 minuti &mdash; farmaco di bridging", upd:true,
     stop:"Interrompere l'infusione 1&ndash;6 ore prima della chirurgia",
-    neuraxial:"Dati limitati: intervallo prudenziale analogo, da discutere caso per caso con ematologia/cardiologia",
-    resume:"Pu&ograve; essere ripreso rapidamente nel postoperatorio se indicato",
-    note:"Utilizzato per garantire copertura antipiastrinica continua nei pazienti a rischissimo trombotico (stent recentissimo) che devono sospendere il P2Y12 orale prima di un intervento non differibile."
+    neuraxial:"Almeno 3 ore dalla sospensione al blocco, preferibilmente di pi&ugrave; (ASRA, grado IIC). Rimuovere il catetere prima di riprendere cangrelor",
+    resume:"Prima dose 8 ore dopo la rimozione del catetere neuroassiale/profondo (ASRA, grado IIC)",
+    note:"Utilizzato per garantire copertura antipiastrinica continua nei pazienti a rischissimo trombotico (stent recentissimo) che devono sospendere il P2Y12 orale prima di un intervento non differibile. Clopidogrel e prasugrel vanno dati subito dopo la fine dell'infusione; ticagrelor anche durante."
   },
   {
-    id:"gp2b3a", name:"Inibitori GPIIb/IIIa (abciximab, eptifibatide, tirofiban)", tag:"Bloccano il recettore fibrinogeno/vWF sulla piastrina",
+    id:"gp2b3a", name:"Inibitori GPIIb/IIIa (abciximab, eptifibatide, tirofiban)", tag:"Bloccano il recettore fibrinogeno/vWF sulla piastrina", upd:true,
     stop:"Abciximab: 24&ndash;48h prima. Eptifibatide/tirofiban: 4&ndash;8h prima",
-    neuraxial:"Stessi intervalli: abciximab 24&ndash;48h, eptifibatide/tirofiban 4&ndash;8h prima del blocco",
-    resume:"Basata sul tempo di recupero della normale aggregazione piastrinica, non su schema fisso",
+    neuraxial:"Evitare il blocco finch&eacute; la funzione piastrinica non &egrave; recuperata: abciximab 24&ndash;48h, eptifibatide/tirofiban 4&ndash;8h (ASRA, grado IC). Cautela se coesiste effetto residuo di FANS",
+    resume:"Controindicati nelle 4 settimane successive alla chirurgia. Se somministrati in urgenza nel postoperatorio con catetere in sede: infusione con farmaci a minimo blocco sensitivo-motorio e monitoraggio neurologico stretto (ASRA, grado IC)",
     note:"Uso quasi esclusivamente in ambito coronarico interventistico acuto."
+  },
+  {
+    id:"cilostazol", name:"Cilostazolo", tag:"Inibitore della fosfodiesterasi III, antiaggregante reversibile (arteriopatia periferica)", upd:true,
+    stop:"Dati perioperatori limitati: sospensione secondo emivita (circa 11 h; metabolita attivo 21 h)",
+    neuraxial:"Evitare il blocco per 2 giorni dalla sospensione (ASRA, grado IIC). Rimuovere il catetere prima di riprendere cilostazolo",
+    resume:"Prima dose 6 ore dopo la rimozione del catetere neuroassiale/profondo (ASRA, grado IIC)",
+    note:"Emivita prolungata nell'insufficienza renale grave. Descritto un caso di ematoma spinale alla rimozione di catetere epidurale in corso di cilostazolo."
   },
   {
     id:"dipiridamolo", name:"Dipiridamolo", tag:"Inibitore fosfodiesterasi/adenosina, azione antiaggregante debole",
     stop:"Dati specifici limitati; generalmente nessuna sospensione o 24h",
-    neuraxial:"Nessuna precauzione aggiuntiva significativa riportata",
+    neuraxial:"Non trattato da ASRA 5&ordf; ed.: nessuna precauzione aggiuntiva significativa riportata in letteratura",
     resume:"Ripresa standard postoperatoria",
     note:"Spesso in associazione fissa con aspirina (es. prevenzione secondaria ictus): valutare il farmaco predominante nella decisione."
   }
@@ -625,91 +694,121 @@ const PLATELETS = [
 
 const ANTICOAG = [
   {
-    id:"warfarin", name:"Warfarin (AVK)", tag:"Antagonista della vitamina K",
+    id:"warfarin", name:"Warfarin (AVK)", tag:"Antagonista della vitamina K", upd:true,
     stop:"Sospendere 5 giorni prima; controllare INR il giorno prima dell'intervento",
-    target:"INR &lt;1,5 per chirurgia standard; INR &lt;1,2 per neuroassiale o chirurgia ad alto rischio emorragico",
-    resume:"Ripresa entro 12&ndash;24h post-operatorie se emostasi adeguata (effetto pieno ritardato di alcuni giorni: coprire con EBPM se rischio trombotico elevato)",
+    target:"Blocco neuroassiale/profondo: INR <strong>nell'intervallo normale del laboratorio locale</strong> (ASRA, grado IB; ESAIC/ESRA: &le;1,1). Chirurgia standard senza blocco: INR &lt;1,5",
+    neuraxial:"Sospendere 5 giorni e normalizzare l'INR prima della puntura (grado IB). Se la prima dose di warfarin &egrave; stata data pi&ugrave; di 24h prima, o se &egrave; stata data una seconda dose, controllare l'INR prima della puntura (grado IIC). Con catetere in sede e warfarin a basse dosi: INR quotidiano (grado IIC). Rimozione del catetere con INR &lt;1,5 (grado IIC); INR 1,5&ndash;3: mantenere o rimuovere con cautela seguendo INR e durata della terapia; INR &gt;3: sospendere o ridurre il warfarin (grado IA)",
+    resume:"Ripresa entro 12&ndash;24h post-operatorie se emostasi adeguata (effetto pieno ritardato di alcuni giorni: coprire con EBPM se rischio trombotico elevato). La rimozione del catetere entro 24h dall'avvio del warfarin &egrave; considerata sicura. Valutazione neurologica per almeno 48h dopo la rimozione (ASRA, grado IIC)",
     note:"Bridging con EBPM riservato ai pazienti ad alto rischio trombotico (vedi sezione dedicata): non di routine."
   },
   {
-    id:"dabigatran", name:"Dabigatran", tag:"Inibitore diretto della trombina (anti-IIa), eliminazione prevalentemente renale",
+    id:"dabigatran", name:"Dabigatran", tag:"Inibitore diretto della trombina (anti-IIa), eliminazione prevalentemente renale", upd:true,
     stop:"Dipende fortemente dalla clearance della creatinina e dal rischio emorragico:<br>CrCl &gt;80 ml/min: 1&ndash;2 gg (basso rischio) / 2&ndash;3 gg (alto rischio)<br>CrCl 50&ndash;80: 1&ndash;3 gg / 3&ndash;4 gg<br>CrCl 30&ndash;50: 3 gg / &gt;4 gg",
-    neuraxial:"Low dose: 48h prima del blocco. High dose: 72h (se CrCl &lt;50 ml/min la procedura pu&ograve; comunque essere eseguita se il dosaggio di laboratorio &egrave; nella norma). Fonte: ESAIC/ESRA 2022",
-    resume:"24h dopo procedure a basso rischio, 48&ndash;72h dopo procedure ad alto rischio/neuroassiali",
-    note:"Antidoto specifico disponibile: idarucizumab (vedi sezione Urgenza)."
+    neuraxial:"<strong>High dose</strong> (dosi per fibrillazione atriale e TVP/EP, es. 150 mg x2): 72h se CrCl &ge;50 ml/min; <strong>120h se CrCl 30&ndash;49</strong>; con CrCl &lt;30 il blocco &egrave; sconsigliato salvo livello plasmatico di dabigatran &lt;30 ng/mL (grado IIC).<br><strong>Low dose</strong> (profilassi dopo protesi d'anca o ginocchio, es. 220 mg/die): 48h; con CrCl &lt;30 sconsigliato salvo livello &lt;30 ng/mL (grado IIC).<br>Livello residuo accettabile: &lt;30 ng/mL (dTT). Fonte: " + ASRA_REF,
+    resume:"Rimozione dell'ago/catetere almeno 24h prima della prima dose high dose e almeno 6h prima della prima dose low dose (ASRA, grado IIC). Per la sola emostasi chirurgica: 24h dopo procedure a basso/moderato rischio, 48&ndash;72h dopo procedure ad alto rischio (ACCP/EHRA)",
+    note:"Somministrazione non pianificata con catetere in sede: attendere 72h (120h se CrCl 30&ndash;49) per la high dose o 48h per la low dose, oppure documentare livello &lt;30 ng/mL, prima di rimuovere il catetere. Antidoto specifico: idarucizumab (vedi Urgenza), ma non va usato solo per poter eseguire un blocco."
   },
   {
-    id:"apixaban", name:"Apixaban", tag:"Inibitore diretto del fattore Xa",
+    id:"apixaban", name:"Apixaban", tag:"Inibitore diretto del fattore Xa", upd:true,
     stop:"Low dose (2,5 mg x2/die): 24&ndash;48h prima<br>High dose (5 mg x2/die, o 2,5 mg x2/die se &lt;60 kg o funzione renale molto ridotta): 48&ndash;72h prima",
-    neuraxial:"Low dose: 36h prima del blocco. High dose: 72h (3 giorni; se CrCl &lt;30 ml/min la procedura pu&ograve; comunque essere eseguita se il dosaggio di laboratorio &egrave; nella norma). Fonte: ESAIC/ESRA 2022, concorde con ASRA 2025",
-    resume:"24h dopo procedure a basso rischio; 48&ndash;72h dopo procedure ad alto rischio/neuroassiali con catetere",
-    note:"Livello residuo accettabile per procedura neuroassiale: concentrazione plasmatica &lt;30 ng/mL o attivit&agrave; anti-Xa specifica &le;0,1 UI/mL, se disponibile in tempi utili."
+    neuraxial:"<strong>High dose</strong>: almeno 72h; dosare apixaban o anti-Xa se &lt;72h (grado IIC).<br><strong>Low dose</strong>: almeno 36h; dosare se &lt;36h (grado IIC, nuova).<br>Livello residuo accettabile: &lt;30 ng/mL oppure anti-Xa &le;0,1 UI/mL. Fonte: " + ASRA_REF,
+    resume:"Rimozione dell'ago/catetere almeno 24h prima della prima dose high dose e almeno 6h prima della prima dose low dose (ASRA, grado IIC). Per la sola emostasi chirurgica: 24h dopo procedure a basso/moderato rischio, 48&ndash;72h dopo procedure ad alto rischio (ACCP/EHRA)",
+    note:"Somministrazione non pianificata con catetere in sede: attendere 72h (high dose) o 36h (low dose), oppure documentare il livello residuo accettabile, prima di rimuovere il catetere. ASRA &egrave; pi&ugrave; conservativa di ACCP per l'apixaban."
   },
   {
-    id:"rivaroxaban", name:"Rivaroxaban", tag:"Inibitore diretto del fattore Xa",
+    id:"rivaroxaban", name:"Rivaroxaban", tag:"Inibitore diretto del fattore Xa", upd:true,
     stop:"Low dose: 24&ndash;48h prima<br>High dose (15&ndash;20 mg/die, in base alla funzione renale): 48&ndash;72h prima",
-    neuraxial:"Low dose: 24h prima del blocco (30h se CrCl &lt;30 ml/min). High dose: 72h (3 giorni). Fonte: ESAIC/ESRA 2022, concorde con ASRA 2025 per l'high dose",
-    resume:"Come apixaban",
-    note:"Nessun antidoto specifico approvato in Italia per uso perioperatorio routinario: in urgenza si utilizza andexanet alfa (dove disponibile) o PCC a 4 fattori off-label."
+    neuraxial:"<strong>High dose</strong>: almeno 72h; dosare se &lt;72h (grado IIC).<br><strong>Low dose</strong> (10 mg/die, o 2,5 mg x2 con aspirina): almeno 24h, 30h se CrCl &lt;30 ml/min; dosare se &lt;24h (grado IIC, nuova).<br>Livello residuo accettabile: &lt;30 ng/mL oppure anti-Xa &le;0,1 UI/mL. Fonte: " + ASRA_REF,
+    resume:"Rimozione dell'ago/catetere almeno 24h prima della prima dose high dose e almeno 6h prima della prima dose low dose (ASRA, grado IIC). Per la sola emostasi chirurgica: come apixaban",
+    note:"Somministrazione non pianificata con catetere in sede: attendere 72h (high dose) o 24h/30h (low dose), oppure documentare il livello residuo accettabile, prima di rimuovere il catetere. Dopo puntura traumatica il produttore raccomanda di ritardare la dose successiva di 24h. In urgenza: andexanet alfa dove disponibile o PCC a 4 fattori off-label."
   },
   {
-    id:"edoxaban", name:"Edoxaban", tag:"Inibitore diretto del fattore Xa",
+    id:"edoxaban", name:"Edoxaban", tag:"Inibitore diretto del fattore Xa", upd:true,
     stop:"Low dose: 24&ndash;48h prima<br>High dose (30&ndash;60 mg/die, in base a peso/funzione renale): 48&ndash;72h prima",
-    neuraxial:"Low dose: 24h prima del blocco (30h se CrCl &lt;30 ml/min). High dose: 72h (3 giorni). Fonte: ESAIC/ESRA 2022",
-    resume:"Come apixaban/rivaroxaban",
-    note:"Andexanet alfa non ha approvazione formale per edoxaban per carenza di dati dedicati: in urgenza il reversal si basa su PCC a 4 fattori off-label."
+    neuraxial:"<strong>High dose</strong>: almeno 72h; dosare se &lt;72h (ASRA, grado IIC). Livello residuo accettabile: &lt;30 ng/mL oppure anti-Xa &le;0,1 UI/mL.<br><strong>Low dose</strong>: nessuna indicazione approvata a basso dosaggio secondo ASRA; ESAIC/ESRA 2022 indica 24h (30h se CrCl &lt;30 ml/min)",
+    resume:"Rimozione dell'ago/catetere almeno 24h prima della prima dose high dose (ASRA, grado IIC). Per la sola emostasi chirurgica: come apixaban/rivaroxaban",
+    note:"Somministrazione non pianificata con catetere in sede: attendere 72h oppure documentare il livello residuo accettabile prima di rimuovere il catetere. Andexanet alfa riduce l'attivit&agrave; anti-Xa dell'edoxaban meno che per gli altri anti-Xa: in urgenza il reversal si basa soprattutto su PCC a 4 fattori."
   },
   {
-    id:"ufh-iv", name:"Eparina non frazionata (EV, terapeutica)", tag:"Anticoagulante indiretto (antitrombina-mediato)",
+    id:"ufh-iv", name:"Eparina non frazionata (EV)", tag:"Anticoagulante indiretto (antitrombina-mediato)", upd:true,
     stop:"Sospendere l'infusione almeno 4&ndash;6 ore prima; verificare aPTT/ACT normalizzati",
-    neuraxial:"Stessa finestra (4&ndash;6h); ritardare la successiva somministrazione EV di almeno 1h dopo il posizionamento dell'ago",
-    resume:"Ripresa in base al sanguinamento chirurgico, tipicamente non prima di 1h dal blocco",
-    note:"In terapia &gt;4 giorni, controllare piastrinemia per rischio di piastrinopenia eparino-indotta prima del blocco."
+    neuraxial:"Sospendere almeno 4&ndash;6h e verificare coagulazione normale prima del blocco (grado IA). Ritardare l'eparina EV di almeno 1h dopo il posizionamento dell'ago (grado IA). Rimozione del catetere 4&ndash;6h dopo l'ultima dose, con coagulazione verificata (grado IA). Puntura ematica o difficile: nessun obbligo di rinviare l'intervento, decisione condivisa con il chirurgo (grado IA)",
+    resume:"Rieparinizzazione almeno 1h dopo la rimozione del catetere (grado IA)",
+    note:"<strong>Cardiochirurgia con eparinizzazione piena:</strong> ASRA sconsiglia di mantenere cateteri neuroassiali o profondi; se l'eparinizzazione &egrave; non pianificata, monitoraggio neurologico e anestetici locali a concentrazione minima (grado IIC, indicazione modificata in questa edizione). In terapia &gt;4 giorni controllare la piastrinemia per piastrinopenia da eparina (grado IC)."
   },
   {
-    id:"ufh-sc", name:"Eparina non frazionata (SC, basse dosi/tromboprofilassi)", tag:"Profilassi standard 5000 UI x2&ndash;3/die",
-    stop:"Nessuna controindicazione specifica alla chirurgia standard",
-    neuraxial:"Nessuna precauzione aggiuntiva importante, ma intervallo prudenziale di alcune ore dall'ultima dose",
-    resume:"Ripresa standard postoperatoria secondo timing di tromboprofilassi",
-    note:"Da non confondere con la formulazione EV terapeutica ad alte dosi."
+    id:"ufh-sc", name:"Eparina non frazionata (SC)", tag:"Basse dosi: 5000 UI x2&ndash;3/die. Alte dosi: &gt;5000 UI/dose o &gt;15.000 UI/die", upd:true,
+    stop:"Basse dosi: nessuna controindicazione specifica alla chirurgia standard",
+    neuraxial:"<strong>Basse dosi</strong> (5000 UI x2&ndash;3/die): blocco almeno 4&ndash;6h dopo l'ultima dose, oppure con coagulazione verificata normale (grado IIC).<br><strong>7500&ndash;10.000 UI x2/die o &le;20.000 UI/die</strong>: almeno 12h e coagulazione normale (grado IIC).<br><strong>&gt;10.000 UI per dose o &gt;20.000 UI/die</strong>: almeno 24h e coagulazione normale (grado IIC)",
+    resume:"Basse dosi postoperatorie: il catetere pu&ograve; essere mantenuto; rimuoverlo almeno 4&ndash;6h dopo l'ultima dose e riprendere l'eparina subito dopo la rimozione (grado IIC). Alte dosi postoperatorie: sicurezza del catetere non stabilita, valutazione individuale con monitoraggio neurologico intensificato e soluzioni a minimo blocco (grado IIC)",
+    note:"Revisione quotidiana della terapia per farmaci concomitanti che agiscono sull'emostasi (grado IB). Piastrinemia se UFH da pi&ugrave; di 4 giorni (grado IC)."
   },
   {
-    id:"lmwh-prophylactic", name:"EBPM &mdash; dose profilattica", tag:"Es. enoxaparina 4000 UI (40 mg)/die",
+    id:"lmwh-prophylactic", name:"EBPM &mdash; low dose", tag:"Es. enoxaparina 40 mg/die o 30 mg x2/die, dalteparina 5000 UI/die", upd:true,
     stop:"Sospendere almeno 12h prima",
-    neuraxial:"12h prima del blocco neuroassiale/profondo; 12h anche prima della rimozione catetere",
-    resume:"Ripresa 4h dopo il blocco/rimozione catetere in assenza di sanguinamento; non prima di 12h se puntura traumatica",
-    note:"Verificare sempre la funzione renale: nell'insufficienza renale severa l'accumulo prolunga l'effetto."
+    neuraxial:"Almeno 12h prima del blocco (grado IC). Se &lt;12h, considerare l'attivit&agrave; anti-Xa: valore suggerito &le;0,1 UI/mL (grado IIC). Monitoraggio anti-Xa di routine sconsigliato",
+    resume:"<strong>Monosomministrazione:</strong> prima dose almeno 12h dopo la puntura, seconda dose almeno 24h dopo la prima; il catetere pu&ograve; restare, va rimosso 12h dopo l'ultima dose e la dose successiva va data almeno 4h dopo la rimozione (grado IC).<br><strong>Doppia somministrazione:</strong> prima dose il giorno successivo e almeno 12h dopo la puntura; il catetere va rimosso prima di iniziare l'EBPM, che va data almeno 4h dopo la rimozione (grado IC).<br><strong>Puntura ematica o traumatica:</strong> ritardare l'EBPM di 24h, decisione condivisa con il chirurgo (grado IIC)",
+    note:"Con catetere in sede evitare farmaci concomitanti che agiscono sull'emostasi (antiaggreganti, UFH, destrano), qualunque sia il dosaggio di EBPM (grado IA). Piastrinemia se EBPM da pi&ugrave; di 4 giorni (grado IC). Insufficienza renale grave: accumulo e prolungamento dell'effetto."
   },
   {
-    id:"lmwh-therapeutic", name:"EBPM &mdash; dose terapeutica", tag:"Es. enoxaparina 1 mg/kg x2/die o 1,5 mg/kg/die",
+    id:"lmwh-therapeutic", name:"EBPM &mdash; high dose", tag:"Es. enoxaparina 1 mg/kg x2/die o 1,5 mg/kg/die, dalteparina 120 UI/kg x2", upd:true,
     stop:"Sospendere almeno 24h prima",
-    neuraxial:"24h prima del blocco neuroassiale/profondo e prima della rimozione del catetere",
-    resume:"Ripresa non prima di 24h dal blocco/rimozione catetere, e solo con emostasi chirurgica adeguata",
-    note:"In urgenza, la reversibilit&agrave; parziale con protamina va considerata (vedi sezione Urgenza)."
+    neuraxial:"Almeno 24h prima del blocco (grado IC). Se &lt;24h, specie in anziani (&gt;75 anni) o con CrCl &le;30 ml/min, considerare l'attivit&agrave; anti-Xa: valore suggerito &le;0,1 UI/mL (grado IIC). Con CrCl 30&ndash;49 dimezzare l'ultima dose preoperatoria",
+    resume:"Ripresa 24h dopo chirurgia non ad alto rischio emorragico e 48&ndash;72h dopo chirurgia ad alto rischio. Il catetere va rimosso almeno 4h prima della prima dose postoperatoria, e la prima dose va data almeno 24h dopo la puntura, scegliendo l'intervallo pi&ugrave; lungo (grado IC)",
+    note:"Fino al 60% dei pazienti in enoxaparina ad alto dosaggio ha attivit&agrave; anti-Xa ancora rilevabile a 24h. In urgenza, la reversibilit&agrave; parziale con protamina va considerata (vedi Urgenza)."
   },
   {
-    id:"fondaparinux", name:"Fondaparinux", tag:"Inibitore selettivo del fattore Xa, emivita lunga (17&ndash;21h)",
-    stop:"Dose profilattica: 36&ndash;42h prima. Dose terapeutica: evitare, se possibile, il blocco neuroassiale del tutto",
-    neuraxial:"Da evitare in presenza di catetere neuroassiale per il rischio di accumulo ed emivita lunga; se indispensabile, intervallo &ge;4 giorni e solo con expertise dedicata",
-    resume:"Ripresa non prima di 6&ndash;12h dal blocco (dose profilattica), con cautela estrema",
-    note:"Nessun antidoto specifico disponibile: la gestione dell'urgenza si basa su supporto emostatico generale."
+    id:"fondaparinux", name:"Fondaparinux", tag:"Inibitore selettivo del fattore Xa, emivita lunga (17&ndash;21h; 29h con CrCl 30&ndash;50; 72h con CrCl &lt;30)", upd:true,
+    stop:"Dose profilattica: 36&ndash;42h prima. Dose terapeutica: secondo emivita e funzione renale",
+    neuraxial:"<strong>Low dose (2,5 mg/die):</strong> 36h nei giovani, 42h negli anziani con funzione renale normale; <strong>58h con CrCl 30&ndash;50</strong>; blocco sconsigliato con CrCl &lt;30 (grado IIC, nuove).<br><strong>High dose (5&ndash;10 mg/die):</strong> <strong>70h nei giovani, 105h negli anziani</strong> con funzione renale normale (grado IIC, nuove).<br>Se si procede prima, dosare l'anti-Xa calibrato per fondaparinux: &le;0,1 UI/mL (grado IIC). Fonte: " + ASRA_REF,
+    resume:"Rimuovere il catetere neuroassiale almeno 6h prima della prima dose postoperatoria (grado IIC)",
+    note:"Nessun antidoto specifico: la protamina non &egrave; efficace. Controindicato con CrCl &lt;30 ml/min e peso &lt;50 kg."
+  },
+  {
+    id:"dti-parenteral", name:"Inibitori diretti della trombina EV (argatroban, bivalirudina, desirudina)", tag:"Uso tipico: piastrinopenia da eparina (HIT), angioplastica", upd:true,
+    stop:"Effetto anticoagulante presente per 1&ndash;3h dopo somministrazione EV; monitoraggio con aPTT",
+    neuraxial:"Tecniche neuroassiali <strong>sconsigliate</strong> nei pazienti in terapia con questi farmaci (ASRA, grado IIC)",
+    resume:"Secondo indicazione clinica (di solito anticoagulazione terapeutica per HIT)",
+    note:"Nessun antidoto: l'effetto non pu&ograve; essere neutralizzato farmacologicamente."
+  },
+  {
+    id:"thrombolytic", name:"Fibrinolitici/trombolitici (alteplase, tenecteplase, streptochinasi, urochinasi)", tag:"Effetto sul fibrinogeno e sul plasminogeno per giorni dopo emivite brevi", upd:true,
+    stop:"Le controindicazioni originali alla trombolisi includono chirurgia o puntura di vasi non comprimibili nei 10 giorni precedenti",
+    neuraxial:"Prima della trombolisi: verificare puntura lombare, anestesia spinale/epidurale o infiltrazione epidurale recenti; evitare i trombolitici nei 10 giorni successivi alla puntura di vasi non comprimibili (grado IA). Dopo trombolisi: <strong>nessuna puntura per almeno 48h</strong>, con coagulazione normale documentata, fibrinogeno compreso (grado IA)",
+    resume:"Se un blocco &egrave; stato eseguito vicino alla trombolisi: monitoraggio neurologico frequente (es. ogni 2h) per almeno 48h dopo l'ultima dose, infusione epidurale a minimo blocco (grado IC). Trombolisi inattesa con catetere in sede: nessuna raccomandazione definitiva sul timing di rimozione; dosare il fibrinogeno e monitorare per almeno 48h dopo la rimozione (grado IIC)",
+    note:"Spesso associati a eparina EV e antiaggreganti, che aumentano ulteriormente il rischio."
   }
 ];
 
+/* Colonne: farmaco, prima del blocco, catetere/rimozione, prima dose dopo blocco/rimozione, fonte e grado */
 const NEURAXIAL_TABLE = [
-  ["Aspirina/FANS","Nessuna attesa richiesta","Nessuna attesa richiesta","Nessuna restrizione"],
-  ["Clopidogrel","5&ndash;7 giorni","5&ndash;7 giorni dall'ultima dose","Carico 24h dopo, o limitare catetere a 1&ndash;2 gg"],
-  ["Prasugrel","7&ndash;10 giorni","7&ndash;10 giorni","Come clopidogrel"],
-  ["Ticagrelor","5&ndash;7 giorni","5&ndash;7 giorni","Come clopidogrel"],
-  ["Warfarin","5 giorni, INR &lt;1,2","INR &lt;1,5 alla rimozione","Ripresa 24h dopo, sorveglianza neurologica prolungata"],
-  ["Rivaroxaban/Edoxaban low dose","24 ore (30h se CrCl&lt;30 ml/min)","24 ore (30h se CrCl&lt;30)","24h dopo, o dopo rimozione catetere"],
-  ["Apixaban low dose","36 ore","36 ore","24h dopo, o dopo rimozione catetere"],
-  ["Dabigatran low dose","48 ore","48 ore","24h dopo, o dopo rimozione catetere"],
-  ["DOAC (qualsiasi) high dose","72 ore (3 giorni)","72 ore","48&ndash;72h dopo, solo con emostasi adeguata"],
-  ["EBPM profilattica","12 ore","12 ore","4h dopo (12h se puntura traumatica)"],
-  ["EBPM terapeutica","24 ore","24 ore","24h dopo, solo con emostasi adeguata"],
-  ["UFH EV terapeutica","4&ndash;6 ore, aPTT normale","4&ndash;6 ore","&ge;1h dopo"],
-  ["Fondaparinux","Evitare se possibile / 36&ndash;42h (profilattico)","Evitare mantenimento catetere","6&ndash;12h dopo, alto indice di cautela"]
+  ["Aspirina/FANS","Nessun intervallo","Nessuna restrizione","Nessuna restrizione","ASRA IC"],
+  ["Clopidogrel","5&ndash;7 giorni","Mantenibile 1&ndash;2 gg se nessuna dose di carico","Subito dopo la rimozione; 6h se dose di carico","ASRA IIC &#9733;"],
+  ["Prasugrel","7&ndash;10 giorni","<strong>Non mantenere</strong>","Subito dopo la rimozione; 6h se dose di carico","ASRA IIC &#9733;"],
+  ["Ticagrelor","<strong>5 giorni</strong>","<strong>Non mantenere</strong>","Subito dopo la rimozione; 6h se dose di carico","ASRA 2C &#9733;"],
+  ["Cangrelor","&ge;3 h (meglio di pi&ugrave;)","Rimuovere prima della ripresa","8h dopo la rimozione","ASRA IIC &#9733;"],
+  ["Cilostazolo","2 giorni","Rimuovere prima della ripresa","6h dopo la rimozione","ASRA IIC &#9733;"],
+  ["Inibitori GPIIb/IIIa","Abciximab 24&ndash;48h; eptifibatide/tirofiban 4&ndash;8h","Se usati nel postoperatorio: infusione a minimo blocco e monitoraggio neurologico","Controindicati entro 4 settimane dalla chirurgia","ASRA IC"],
+  ["Warfarin","5 giorni e INR normale (laboratorio locale)","Rimozione con INR &lt;1,5; 1,5&ndash;3 con cautela; &gt;3 sospendere/ridurre","Rimozione sicura entro 24h dall'avvio; sorveglianza 48h dopo la rimozione","ASRA IB/IIC &#9733;"],
+  ["Apixaban high dose","72h (o livello &lt;30 ng/mL / anti-Xa &le;0,1)","Se dose non pianificata: 72h o livello prima della rimozione","Ago/catetere rimosso &ge;24h prima della prima dose","ASRA IIC &#9733;"],
+  ["Apixaban low dose","36h (o livello)","Se dose non pianificata: 36h o livello","&ge;6h prima della prima dose","ASRA IIC &#9733;"],
+  ["Rivaroxaban high dose","72h (o livello)","Se dose non pianificata: 72h o livello","&ge;24h prima della prima dose","ASRA IIC &#9733;"],
+  ["Rivaroxaban low dose","24h (30h se CrCl &lt;30)","Se dose non pianificata: 24h (30h) o livello","&ge;6h prima della prima dose","ASRA IIC &#9733;"],
+  ["Edoxaban high dose","72h (o livello)","Se dose non pianificata: 72h o livello","&ge;24h prima della prima dose","ASRA IIC &#9733;"],
+  ["Edoxaban low dose","Nessuna indicazione approvata (ASRA); ESAIC/ESRA: 24h (30h se CrCl &lt;30)","&mdash;","&mdash;","ESAIC/ESRA 2022"],
+  ["Dabigatran high dose","CrCl &ge;50: 72h; <strong>CrCl 30&ndash;49: 120h</strong>; CrCl &lt;30: no, salvo livello &lt;30 ng/mL","Se dose non pianificata: 72h (120h) o livello","&ge;24h prima della prima dose","ASRA IIC &#9733;"],
+  ["Dabigatran low dose","48h; CrCl &lt;30: no, salvo livello &lt;30 ng/mL","Se dose non pianificata: 48h o livello","&ge;6h prima della prima dose","ASRA IIC &#9733;"],
+  ["UFH EV","4&ndash;6h e coagulazione normale","Rimozione 4&ndash;6h dopo l'ultima dose, con coagulazione verificata. Cardiochirurgia con eparinizzazione piena: non mantenere","&ge;1h dopo puntura o rimozione","ASRA IA/IIC &#9733;"],
+  ["UFH SC 5000 UI x2&ndash;3/die","4&ndash;6h o coagulazione normale","Mantenibile; rimozione 4&ndash;6h dopo l'ultima dose","Subito dopo la rimozione","ASRA IIC &#9733;"],
+  ["UFH SC 7500&ndash;10.000 UI x2 (&le;20.000 UI/die)","12h e coagulazione normale","Sicurezza non stabilita: valutazione individuale","&mdash;","ASRA IIC &#9733;"],
+  ["UFH SC &gt;10.000 UI/dose (&gt;20.000 UI/die)","24h e coagulazione normale","Sicurezza non stabilita: valutazione individuale","&mdash;","ASRA IIC &#9733;"],
+  ["EBPM low dose x1/die","12h (anti-Xa &le;0,1 se prima)","Mantenibile; rimozione 12h dopo l'ultima dose","Prima dose &ge;12h dopo la puntura; dose successiva &ge;4h dopo la rimozione","ASRA IC &#9733;"],
+  ["EBPM low dose x2/die","12h (anti-Xa &le;0,1 se prima)","Rimuovere prima di iniziare l'EBPM","Prima dose il giorno dopo e &ge;12h dalla puntura; &ge;4h dopo la rimozione","ASRA IC &#9733;"],
+  ["EBPM high dose","24h (anti-Xa &le;0,1 se prima, specie anziani e CrCl &le;30)","Rimuovere &ge;4h prima della prima dose","&ge;24h dalla puntura (48&ndash;72h dopo chirurgia ad alto rischio emorragico)","ASRA IC &#9733;"],
+  ["Fondaparinux low dose (2,5 mg)","36h giovani, 42h anziani; 58h se CrCl 30&ndash;50; no se CrCl &lt;30","Rimuovere &ge;6h prima della prima dose","&ge;6h dopo la rimozione","ASRA IIC &#9733;"],
+  ["Fondaparinux high dose (5&ndash;10 mg)","70h giovani, 105h anziani","Rimuovere &ge;6h prima della prima dose","&ge;6h dopo la rimozione","ASRA IIC &#9733;"],
+  ["Inibitori diretti della trombina EV","Tecniche neuroassiali sconsigliate","&mdash;","&mdash;","ASRA IIC &#9733;"],
+  ["Trombolitici","Nessuna puntura per 48h; coagulazione e fibrinogeno normali","Inatteso con catetere: dosare fibrinogeno; sorveglianza 48h dopo la rimozione","Monitoraggio neurologico ogni 2h per 48h","ASRA IA/IC &#9733;"]
 ];
 
 const URGENT = [
@@ -723,13 +822,13 @@ const URGENT = [
     id:"dabigatran-rev", name:"Dabigatran &mdash; reversal urgente", tag:"anti-IIa",
     approach:"Idarucizumab 5 g EV (due boli da 2,5 g), reversal specifico, rapido (minuti) e pressoch&eacute; completo nella maggior parte dei casi",
     alt:"Se idarucizumab non disponibile: PCC a 4 fattori off-label, emodialisi possibile per la componente non legata alle proteine plasmatiche",
-    caveat:"&Egrave; l'antidoto specifico meglio caratterizzato tra i DOAC; efficacia confermata anche in chirurgia/neurochirurgia d'urgenza in revisioni recenti."
+    caveat:"&Egrave; l'antidoto specifico meglio caratterizzato tra i DOAC. Se ricompaiono sanguinamento e alterazioni coagulative si pu&ograve; considerare una seconda dose di 5 g. Possibile rischio tromboembolico legato alla malattia di base: riprendere l'anticoagulante appena indicato. ASRA 5&ordf; ed. sconsiglia di usarlo solo per poter eseguire un blocco; se l'intervento non pu&ograve; attendere e serve l'anestesia loco-regionale, questa pu&ograve; essere considerata dopo reversal completo."
   },
   {
     id:"fxa-rev", name:"Apixaban / Rivaroxaban &mdash; reversal urgente", tag:"anti-Xa",
     approach:"Andexanet alfa dove disponibile: dose bassa o alta in base a farmaco, dosaggio e tempo dall'ultima assunzione (bolo EV seguito da infusione fino a 120 minuti)",
     alt:"PCC a 4 fattori off-label (25&ndash;50 UI/kg) quando andexanet non &egrave; disponibile: nella pratica reale rappresenta l'opzione pi&ugrave; utilizzata (fino all'87% dei casi in audit multicentrici) per costo, disponibilit&agrave; e tempi di somministrazione pi&ugrave; rapidi",
-    caveat:"Andexanet alfa pu&ograve; indurre resistenza transitoria all'eparina durante procedure che la richiedono (es. angioplastica coronarica emergente): da tenere presente se &egrave; prevista eparinizzazione a breve distanza."
+    caveat:"Andexanet alfa pu&ograve; indurre resistenza transitoria all'eparina durante procedure che la richiedono (es. angioplastica coronarica emergente). Avvertenza in riquadro (FDA) per eventi tromboembolici, ischemici, arresto cardiaco e morte improvvisa. Dose bassa: bolo 400 mg + 480 mg in 120 min; dose alta: bolo 800 mg + 960 mg in 120 min. ASRA 5&ordf; ed. sconsiglia di usarlo, come il PCC, solo per poter eseguire un blocco."
   },
   {
     id:"edoxaban-rev", name:"Edoxaban &mdash; reversal urgente", tag:"anti-Xa",
@@ -820,6 +919,10 @@ const URGENT_BY_DRUG = {
   ]
 };
 
+URGENT_BY_DRUG["cilostazol"]=[{drug:"Sospendere e attendere",role:"primary",note:"Antiaggregazione debole e reversibile; in caso di sanguinamento maggiore, gestione come per gli altri antiaggreganti (trasfusione piastrinica, acido tranexamico)."}];
+URGENT_BY_DRUG["dti-parenteral"]=[{drug:"Nessun antidoto disponibile",role:"info",note:"Sospendere l'infusione: l'effetto si esaurisce in 1&ndash;3 ore. Misure di supporto emostatico; consulenza ematologica."}];
+URGENT_BY_DRUG["thrombolytic"]=[{drug:"Fibrinogeno / crioprecipitato",role:"primary",note:"Fibrinogeno e plasminogeno restano ridotti per ore-giorni: correggere il fibrinogeno guidati dal laboratorio."},{drug:"Acido tranexamico",dose:"1 g EV",role:"adj",note:"Antifibrinolitico, da valutare caso per caso."}];
+
 const ROLE_LABEL = {primary:"Prima linea", info:"Alternativa / da valutare", adj:"Adiuvante"};
 const ROLE_CLASS = {primary:"ok", info:"", adj:"plate"};
 
@@ -843,7 +946,7 @@ function drugCard(d, cls){
   <div class="drug-card ${cls}" id="card-${d.id}">
     <div class="drug-head" onclick="this.parentElement.classList.toggle('open')">
       <div>
-        <div class="drug-name">${d.name}</div>
+        <div class="drug-name">${d.name}${d.upd ? ' <span class="upd">Aggiornato ASRA 5&ordf; ed.</span>' : ""}</div>
         <div class="drug-tag">${d.tag}</div>
       </div>
       <div class="chev">&#9656;</div>
@@ -878,7 +981,7 @@ document.getElementById("anti-list").innerHTML = ANTICOAG.map(d=>drugCard(d,"ant
 document.getElementById("urg-list").innerHTML = URGENT.map(urgentCard).join("");
 
 document.getElementById("neur-table-body").innerHTML = NEURAXIAL_TABLE.map(r=>`
-  <tr><td class="hi">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>
+  <tr><td class="hi">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td style="font-family:var(--mono);font-size:12px;white-space:nowrap;">${r[4]}</td></tr>
 `).join("");
 
 /* ---- Selettore urgenza ---- */
